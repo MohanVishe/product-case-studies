@@ -1,0 +1,6 @@
+# Internal working files — must never reach a public repo
+FACT-CHECK.md
+BRIEF.md
+*.internal.md
+.DS_Store
+Thumbs.db

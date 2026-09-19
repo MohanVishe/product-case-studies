@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="680" height="370" preserveAspectRatio="xMinYMin meet" viewBox="0 0 680 370" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="680" height="370"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-370)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="680" height="370" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="20" y="340" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 15px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,680) scale(1,-1)">Same two models, three different answers</text>
+			<text x="20" y="322" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 10.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,644) scale(1,-1)">Orchestrator node, illustrative parameters. The cheaper model is 4x cheaper per token in every column.</text>
+			<path d="M 60,78 L 660,78 Z" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="32.642578125" y="75.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,150) scale(1,-1)">$0.00</text>
+			<path d="M 60,123 L 660,123 Z" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="32.642578125" y="120.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,240) scale(1,-1)">$0.01</text>
+			<path d="M 60,168 L 660,168 Z" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="32.642578125" y="165.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,330) scale(1,-1)">$0.02</text>
+			<path d="M 60,213 L 660,213 Z" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="32.642578125" y="210.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,420) scale(1,-1)">$0.03</text>
+			<path d="M 60,258 L 660,258 Z" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="32.642578125" y="255.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,510) scale(1,-1)">$0.04</text>
+			<rect x="110.0" y="78" width="52.0" height="135.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<text x="119.60693359375" y="218.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,436) scale(1,-1)">$0.0300</text>
+			<rect x="172.0" y="78" width="52.0" height="103.94999999999999" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
+			<text x="181.60693359375" y="186.95" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,373) scale(1,-1)">$0.0231</text>
+			<text x="115.2559814453125" y="237.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10.5px;fill: rgb(18%,49%,30%); stroke:none;" transform="translate(0,474) scale(1,-1)">cheaper model -23%</text>
+			<text x="125.6278076171875" y="60" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,120) scale(1,-1)">Cost per attempt</text>
+			<text x="104.3358154296875" y="46" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,92) scale(1,-1)">what a cost dashboard shows</text>
+			<rect x="303.33333333333337" y="78" width="52.0" height="150.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<text x="312.94026692708337" y="233.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,466) scale(1,-1)">$0.0333</text>
+			<rect x="365.33333333333337" y="78" width="52.0" height="173.25" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
+			<text x="374.94026692708337" y="256.25" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,512) scale(1,-1)">$0.0385</text>
+			<text x="306.99995930989587" y="275.25" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10.5px;fill: rgb(70%,14%,11%); stroke:none;" transform="translate(0,550) scale(1,-1)">cheaper model +16%</text>
+			<text x="303.07014973958337" y="60" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,120) scale(1,-1)">Cost per successful task</text>
+			<text x="306.85835774739587" y="46" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,92) scale(1,-1)">what you actually pay for</text>
+			<rect x="496.6666666666667" y="78" width="52.00000000000006" height="70.80000000000001" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<text x="506.27360026041674" y="153.8" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,307) scale(1,-1)">$0.0157</text>
+			<rect x="558.6666666666667" y="78" width="52.0" height="51.75" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
+			<text x="568.2736002604167" y="134.75" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,269) scale(1,-1)">$0.0115</text>
+			<text x="501.92264811197924" y="172.8" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10.5px;fill: rgb(18%,49%,30%); stroke:none;" transform="translate(0,345) scale(1,-1)">cheaper model -27%</text>
+			<text x="507.23160807291674" y="60" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,120) scale(1,-1)">Per successful task,</text>
+			<text x="509.33451334635424" y="46" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,92) scale(1,-1)">with prompt caching</text>
+			<rect x="20" y="295" width="10" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<text x="35" y="296" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 10px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,592) scale(1,-1)">capable model</text>
+			<rect x="109.9560546875" y="295" width="10.0" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
+			<text x="124.9560546875" y="296" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 10px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,592) scale(1,-1)">cheaper model</text>
+		</g>
+	</g>
+</svg>

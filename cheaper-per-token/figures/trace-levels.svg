@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="680" height="450" preserveAspectRatio="xMinYMin meet" viewBox="0 0 680 450" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="680" height="450"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-450)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="680" height="450" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="20" y="420" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 15px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,840) scale(1,-1)">What to evaluate in one multi-turn conversation</text>
+			<text x="20" y="402" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 10.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,804) scale(1,-1)">A conversation from the test agent. Each band is a level you can grade, and each needs its own checks.</text>
+			<text x="20" y="356" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,712) scale(1,-1)">Customer</text>
+			<path d="M 110,360 L 660,360 Z" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 0.8; stroke-dasharray: 2, 3;"/>
+			<text x="20" y="298" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,596) scale(1,-1)">Orchestrator</text>
+			<path d="M 110,302 L 660,302 Z" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 0.8; stroke-dasharray: 2, 3;"/>
+			<text x="20" y="240" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,480) scale(1,-1)">Tools</text>
+			<path d="M 110,244 L 660,244 Z" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 0.8; stroke-dasharray: 2, 3;"/>
+			<rect x="118" y="350" width="50" height="22" rx="4" ry="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,13%,15%); fill-rule: evenodd;"/>
+			<text x="132.0533447265625" y="357" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 8.5px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,714) scale(1,-1)">turn 1</text>
+			<rect x="173" y="292" width="50" height="22" rx="4" ry="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<text x="191.562744140625" y="299" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 8.5px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,598) scale(1,-1)">call</text>
+			<rect x="228" y="234" width="50" height="22" rx="4" ry="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(60%,63%,66%); fill-rule: evenodd;"/>
+			<text x="245.384033203125" y="241" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 8.5px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,482) scale(1,-1)">find</text>
+			<rect x="283" y="292" width="50" height="22" rx="4" ry="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<text x="301.562744140625" y="299" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 8.5px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,598) scale(1,-1)">call</text>
+			<rect x="338" y="234" width="50" height="22" rx="4" ry="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(60%,63%,66%); fill-rule: evenodd;"/>
+			<text x="350.6650390625" y="241" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 8.5px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,482) scale(1,-1)">orders</text>
+			<rect x="393" y="292" width="50" height="22" rx="4" ry="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<text x="408.337890625" y="299" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 8.5px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,598) scale(1,-1)">reply</text>
+			<rect x="448" y="350" width="50" height="22" rx="4" ry="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,13%,15%); fill-rule: evenodd;"/>
+			<text x="461.40380859375" y="357" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 8.5px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,714) scale(1,-1)">turn 2</text>
+			<rect x="503" y="292" width="50" height="22" rx="4" ry="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<text x="521.562744140625" y="299" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 8.5px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,598) scale(1,-1)">call</text>
+			<rect x="558" y="234" width="50" height="22" rx="4" ry="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(60%,63%,66%); fill-rule: evenodd;"/>
+			<text x="569.38671875" y="241" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 8.5px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,482) scale(1,-1)">update</text>
+			<rect x="613" y="292" width="50" height="22" rx="4" ry="4" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<text x="628.337890625" y="299" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 8.5px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,598) scale(1,-1)">reply</text>
+			<path d="M 173,216 L 223,216 Z" style="stroke: rgb(12%,37%,65%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 173,216 L 173,222 Z" style="stroke: rgb(12%,37%,65%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 223,216 L 223,222 Z" style="stroke: rgb(12%,37%,65%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="180.93701171875" y="202" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10px;fill: rgb(12%,37%,65%); stroke:none;" transform="translate(0,404) scale(1,-1)">1 Node</text>
+			<text x="183.0232421875" y="189" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 8.8px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,378) scale(1,-1)">one call</text>
+			<path d="M 173,170 L 443,170 Z" style="stroke: rgb(43%,25%,75%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 173,170 L 173,176 Z" style="stroke: rgb(43%,25%,75%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 443,170 L 443,176 Z" style="stroke: rgb(43%,25%,75%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="279.92626953125" y="156" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10px;fill: rgb(43%,25%,75%); stroke:none;" transform="translate(0,312) scale(1,-1)">2 Trajectory</text>
+			<text x="248.53984375" y="143" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 8.8px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,286) scale(1,-1)">tools, arguments, order, retries</text>
+			<path d="M 118,124 L 443,124 Z" style="stroke: rgb(5%,46%,43%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 118,124 L 118,130 Z" style="stroke: rgb(5%,46%,43%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 443,124 L 443,130 Z" style="stroke: rgb(5%,46%,43%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="265.275390625" y="110" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10px;fill: rgb(5%,46%,43%); stroke:none;" transform="translate(0,220) scale(1,-1)">3 Turn</text>
+			<text x="241.9333984375" y="97" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 8.8px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,194) scale(1,-1)">was this reply right?</text>
+			<path d="M 118,78 L 663,78 Z" style="stroke: rgb(12%,13%,15%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 118,78 L 118,84 Z" style="stroke: rgb(12%,13%,15%); stroke-linecap: butt; stroke-width: 2;"/>
+			<path d="M 663,78 L 663,84 Z" style="stroke: rgb(12%,13%,15%); stroke-linecap: butt; stroke-width: 2;"/>
+			<text x="355.2998046875" y="64" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,128) scale(1,-1)">4 Conversation</text>
+			<text x="320.57265625" y="51" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 8.8px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,102) scale(1,-1)">end state + every reply, across turns</text>
+			<text x="118" y="22" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10px;fill: rgb(70%,14%,11%); stroke:none;" transform="translate(0,44) scale(1,-1)">5 Reliability: run the whole conversation k times and count how often all k succeed.</text>
+		</g>
+	</g>
+</svg>

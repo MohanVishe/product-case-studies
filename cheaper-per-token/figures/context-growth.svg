@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="680" height="350" preserveAspectRatio="xMinYMin meet" viewBox="0 0 680 350" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="680" height="350"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-350)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="680" height="350" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="20" y="320" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 15px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,640) scale(1,-1)">Every turn re-sends everything before it</text>
+			<text x="20" y="302" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 10.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,604) scale(1,-1)">Input tokens per turn of one attempt. Illustrative parameters from cost_model.py.</text>
+			<path d="M 60,60 L 660,60 Z" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="49.1484375" y="57.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,114) scale(1,-1)">0</text>
+			<path d="M 60,107.5 L 660,107.5 Z" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="32.642578125" y="104.5" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,209) scale(1,-1)">2,500</text>
+			<path d="M 60,155 L 660,155 Z" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="32.642578125" y="152.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,304) scale(1,-1)">5,000</text>
+			<path d="M 60,202.5 L 660,202.5 Z" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="32.642578125" y="199.5" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,399) scale(1,-1)">7,500</text>
+			<path d="M 60,250 L 660,250 Z" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 0.6;"/>
+			<text x="27.791015624999996" y="247.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,494) scale(1,-1)">10,000</text>
+			<rect x="80" y="60" width="30" height="76.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(78%,80%,83%); fill-rule: evenodd;"/>
+			<text x="92.439453125" y="46" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,92) scale(1,-1)">1</text>
+			<rect x="118" y="60" width="30" height="76.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(78%,80%,83%); fill-rule: evenodd;"/>
+			<rect x="118" y="136.0" width="30" height="15.199999999999989" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<text x="130.439453125" y="46" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,92) scale(1,-1)">2</text>
+			<rect x="156" y="60" width="30" height="76.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(78%,80%,83%); fill-rule: evenodd;"/>
+			<rect x="156" y="136.0" width="30" height="30.400000000000006" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<text x="168.439453125" y="46" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,92) scale(1,-1)">3</text>
+			<text x="78.7132568359375" y="30" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,60) scale(1,-1)">capable model: 3 turns</text>
+			<text x="86.26171875" y="176.39999999999998" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10px;fill: rgb(12%,37%,65%); stroke:none;" transform="translate(0,352) scale(1,-1)">14,400 input tokens</text>
+			<rect x="264" y="60" width="30" height="76.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(78%,80%,83%); fill-rule: evenodd;"/>
+			<text x="276.439453125" y="46" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,92) scale(1,-1)">1</text>
+			<rect x="302" y="60" width="30" height="76.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(78%,80%,83%); fill-rule: evenodd;"/>
+			<rect x="302" y="136.0" width="30" height="15.199999999999989" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
+			<text x="314.439453125" y="46" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,92) scale(1,-1)">2</text>
+			<rect x="340" y="60" width="30" height="76.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(78%,80%,83%); fill-rule: evenodd;"/>
+			<rect x="340" y="136.0" width="30" height="30.400000000000006" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
+			<text x="352.439453125" y="46" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,92) scale(1,-1)">3</text>
+			<rect x="378" y="60" width="30" height="76.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(78%,80%,83%); fill-rule: evenodd;"/>
+			<rect x="378" y="136.0" width="30" height="45.599999999999994" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
+			<text x="390.439453125" y="46" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,92) scale(1,-1)">4</text>
+			<rect x="416" y="60" width="30" height="76.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(78%,80%,83%); fill-rule: evenodd;"/>
+			<rect x="416" y="136.0" width="30" height="60.80000000000001" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
+			<text x="428.439453125" y="46" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,92) scale(1,-1)">5</text>
+			<rect x="454" y="60" width="30" height="76.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(78%,80%,83%); fill-rule: evenodd;"/>
+			<rect x="454" y="136.0" width="30" height="76.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
+			<text x="466.439453125" y="46" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,92) scale(1,-1)">6</text>
+			<rect x="492" y="60" width="30" height="76.0" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(78%,80%,83%); fill-rule: evenodd;"/>
+			<rect x="492" y="136.0" width="30" height="91.19999999999999" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
+			<text x="504.439453125" y="46" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,92) scale(1,-1)">7</text>
+			<text x="338.300537109375" y="30" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,60) scale(1,-1)">cheaper model: 7 turns</text>
+			<text x="346.26171875" y="237.2" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10px;fill: rgb(83%,45%,10%); stroke:none;" transform="translate(0,474) scale(1,-1)">44,800 input tokens</text>
+			<rect x="20" y="275" width="10" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(78%,80%,83%); fill-rule: evenodd;"/>
+			<text x="35" y="276" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 10px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,552) scale(1,-1)">system prompt + tools + request</text>
+			<rect x="190.91796875" y="275" width="10.0" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
+			<text x="205.91796875" y="276" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 10px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,552) scale(1,-1)">earlier turns, re-sent</text>
+			<text x="588.9609375" y="96" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,192) scale(1,-1)">2.3x the turns,</text>
+			<text x="584.3671875" y="81" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10.5px;fill: rgb(83%,45%,10%); stroke:none;" transform="translate(0,162) scale(1,-1)">3.1x the tokens</text>
+		</g>
+	</g>
+</svg>

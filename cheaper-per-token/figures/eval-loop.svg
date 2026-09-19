@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="680" height="330" preserveAspectRatio="xMinYMin meet" viewBox="0 0 680 330" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="680" height="330"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-330)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="680" height="330" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="20" y="300" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 15px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,600) scale(1,-1)">How to run it: the evaluation loop</text>
+			<text x="20" y="282" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 10.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,564) scale(1,-1)">Every model or prompt change goes around once. The loop is what turns an argument into an afternoon.</text>
+			<rect x="20" y="168" width="145" height="78" rx="6" ry="6" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="53.01708984375" y="228" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 11.0px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,456) scale(1,-1)">1 Build the sets</text>
+			<text x="47.2242431640625" y="211.5" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,423) scale(1,-1)">per node, end to end,</text>
+			<text x="36.6295166015625" y="199.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,398) scale(1,-1)">multi-turn; from real traffic</text>
+			<rect x="187" y="168" width="145" height="78" rx="6" ry="6" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="226.191162109375" y="228" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 11.0px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,456) scale(1,-1)">2 Instrument</text>
+			<text x="208.251953125" y="211.5" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,423) scale(1,-1)">one span per model call:</text>
+			<text x="199.665771484375" y="199.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,398) scale(1,-1)">node, model, tokens, latency</text>
+			<path d="M 166,207 L 185,207 Z" style="stroke: rgb(60%,63%,66%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="185 207, 178.5526 209.7259, 178.5526 204.2741" style="stroke: rgb(60%,63%,66%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(60%,63%,66%); fill-rule: evenodd;"/>
+			<rect x="354" y="168" width="145" height="78" rx="6" ry="6" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="391.327392578125" y="228" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 11.0px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,456) scale(1,-1)">3 Run k times</text>
+			<text x="365.7125244140625" y="211.5" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,423) scale(1,-1)">every candidate config, same</text>
+			<text x="389.645751953125" y="199.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,398) scale(1,-1)">tasks, same seeds</text>
+			<path d="M 333,207 L 352,207 Z" style="stroke: rgb(60%,63%,66%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="352 207, 345.5526 209.7259, 345.5526 204.2741" style="stroke: rgb(60%,63%,66%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(60%,63%,66%); fill-rule: evenodd;"/>
+			<rect x="521" y="168" width="145" height="78" rx="6" ry="6" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="573.3798828125" y="228" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 11.0px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,456) scale(1,-1)">4 Grade</text>
+			<text x="537.2027587890625" y="211.5" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,423) scale(1,-1)">end state first, rubric judge</text>
+			<text x="535.2962646484375" y="199.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,398) scale(1,-1)">second, humans spot-check</text>
+			<path d="M 500,207 L 519,207 Z" style="stroke: rgb(60%,63%,66%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="519 207, 512.5526 209.7259, 512.5526 204.2741" style="stroke: rgb(60%,63%,66%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(60%,63%,66%); fill-rule: evenodd;"/>
+			<rect x="521" y="50" width="145" height="78" rx="6" ry="6" style="stroke: rgb(18%,49%,30%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="554.17822265625" y="110" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 11.0px;fill: rgb(18%,49%,30%); stroke:none;" transform="translate(0,220) scale(1,-1)">5a Quality gate</text>
+			<text x="543.0753173828125" y="93.5" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,187) scale(1,-1)">success rate and pass^k</text>
+			<text x="562.37451171875" y="81.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,162) scale(1,-1)">above the bar?</text>
+			<rect x="354" y="50" width="145" height="78" rx="6" ry="6" style="stroke: rgb(5%,46%,43%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="385.596435546875" y="110" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 11.0px;fill: rgb(5%,46%,43%); stroke:none;" transform="translate(0,220) scale(1,-1)">5b Latency gate</text>
+			<text x="368.2962646484375" y="93.5" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,187) scale(1,-1)">p95 per conversation within</text>
+			<text x="409.202392578125" y="81.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,162) scale(1,-1)">budget?</text>
+			<path d="M 520,89 L 501,89 Z" style="stroke: rgb(5%,46%,43%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="501 89, 507.4474 86.27407, 507.4474 91.72593" style="stroke: rgb(5%,46%,43%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(5%,46%,43%); fill-rule: evenodd;"/>
+			<rect x="187" y="50" width="145" height="78" rx="6" ry="6" style="stroke: rgb(12%,37%,65%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="240.82470703125" y="110" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 11.0px;fill: rgb(12%,37%,65%); stroke:none;" transform="translate(0,220) scale(1,-1)">5c Cost</text>
+			<text x="200.649169921875" y="93.5" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,187) scale(1,-1)">cheapest per successful task</text>
+			<text x="250.21337890625" y="81.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,162) scale(1,-1)">wins</text>
+			<path d="M 353,89 L 334,89 Z" style="stroke: rgb(12%,37%,65%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="334 89, 340.4474 86.27407, 340.4474 91.72593" style="stroke: rgb(12%,37%,65%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<rect x="20" y="50" width="145" height="78" rx="6" ry="6" style="stroke: rgb(12%,13%,15%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="42.7421875" y="110" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 11.0px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,220) scale(1,-1)">6 Ship and monitor</text>
+			<text x="32.15087890625" y="93.5" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,187) scale(1,-1)">regression gate in CI; failures</text>
+			<text x="54.04541015625" y="81.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,162) scale(1,-1)">become new tasks</text>
+			<path d="M 186,89 L 167,89 Z" style="stroke: rgb(12%,13%,15%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="167 89, 173.4474 86.27407, 173.4474 91.72593" style="stroke: rgb(12%,13%,15%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(12%,13%,15%); fill-rule: evenodd;"/>
+			<path d="M 593.5,168 L 593.5,130 Z" style="stroke: rgb(60%,63%,66%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="593.5 130, 596.2259 136.4474, 590.7741 136.4474" style="stroke: rgb(60%,63%,66%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(60%,63%,66%); fill-rule: evenodd;"/>
+			<path d="M 92.5,128 L 92.5,166 Z" style="stroke: rgb(60%,63%,66%); stroke-linecap: butt; stroke-width: 1.4; stroke-dasharray: 3, 3;"/>
+			<polygon points="92.5 166, 89.77407 159.5526, 95.22593 159.5526" style="stroke: rgb(60%,63%,66%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(60%,63%,66%); fill-rule: evenodd;"/>
+			<text x="20" y="22" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,44) scale(1,-1)">A config that fails a gate is out, however cheap it is. Cost only ranks what's left.</text>
+		</g>
+	</g>
+</svg>

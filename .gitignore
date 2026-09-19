@@ -4,3 +4,5 @@ BRIEF.md
 *.internal.md
 .DS_Store
 Thumbs.db
+__pycache__/
+*.pyc

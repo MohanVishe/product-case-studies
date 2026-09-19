@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="680" height="320" preserveAspectRatio="xMinYMin meet" viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="680" height="320"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-320)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="680" height="320" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="20" y="290" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 15px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,580) scale(1,-1)">Where each model tends to belong</text>
+			<text x="20" y="272" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 10.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,544) scale(1,-1)">Decision nodes compound errors across turns; leaf nodes do one narrow job in one call.</text>
+			<rect x="20" y="170" width="110" height="60" rx="6" ry="6" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="50.11572265625" y="212" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 11.0px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,424) scale(1,-1)">Customer</text>
+			<text x="52.806640625" y="197.5" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 11.0px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,395) scale(1,-1)">message</text>
+			<rect x="160" y="170" width="130" height="60" rx="6" ry="6" style="stroke: rgb(83%,45%,10%); stroke-linecap: butt; stroke-width: 1; fill: rgb(98%,93%,89%); fill-rule: evenodd;"/>
+			<text x="207.4150390625" y="212" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 11.0px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,424) scale(1,-1)">Router</text>
+			<text x="175.5540771484375" y="195.5" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,391) scale(1,-1)">classify the intent, 1 call</text>
+			<rect x="320" y="160" width="150" height="80" rx="6" ry="6" style="stroke: rgb(12%,37%,65%); stroke-linecap: butt; stroke-width: 1; fill: rgb(90%,94%,98%); fill-rule: evenodd;"/>
+			<text x="362.314208984375" y="222" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 11.0px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,444) scale(1,-1)">Orchestrator</text>
+			<text x="335.8546142578125" y="205.5" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,411) scale(1,-1)">plan, pick tools, read results,</text>
+			<text x="368.322998046875" y="193.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,386) scale(1,-1)">decide again</text>
+			<rect x="330" y="50" width="130" height="50" rx="6" ry="6" style="stroke: rgb(89%,90%,91%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="381.070068359375" y="82" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 11.0px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,164) scale(1,-1)">Tools</text>
+			<text x="352.5677490234375" y="65.5" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,131) scale(1,-1)">orders, stock, tickets</text>
+			<rect x="500" y="170" width="150" height="60" rx="6" ry="6" style="stroke: rgb(83%,45%,10%); stroke-linecap: butt; stroke-width: 1; fill: rgb(98%,93%,89%); fill-rule: evenodd;"/>
+			<text x="549.146240234375" y="212" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 11.0px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,424) scale(1,-1)">Formatter</text>
+			<text x="519.2686767578125" y="195.5" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,391) scale(1,-1)">tool results to a fixed reply</text>
+			<text x="559.1102294921875" y="183.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,366) scale(1,-1)">schema</text>
+			<path d="M 130,200 L 158,200 Z" style="stroke: rgb(60%,63%,66%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="158 200, 151.5526 202.7259, 151.5526 197.2741" style="stroke: rgb(60%,63%,66%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(60%,63%,66%); fill-rule: evenodd;"/>
+			<path d="M 290,200 L 318,200 Z" style="stroke: rgb(60%,63%,66%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="318 200, 311.5526 202.7259, 311.5526 197.2741" style="stroke: rgb(60%,63%,66%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(60%,63%,66%); fill-rule: evenodd;"/>
+			<path d="M 470,200 L 498,200 Z" style="stroke: rgb(60%,63%,66%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="498 200, 491.5526 202.7259, 491.5526 197.2741" style="stroke: rgb(60%,63%,66%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(60%,63%,66%); fill-rule: evenodd;"/>
+			<path d="M 375,160 L 375,102 Z" style="stroke: rgb(12%,37%,65%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="375 102, 377.7259 108.4474, 372.2741 108.4474" style="stroke: rgb(12%,37%,65%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<path d="M 415,100 L 415,158 Z" style="stroke: rgb(12%,37%,65%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="415 158, 412.2741 151.5526, 417.7259 151.5526" style="stroke: rgb(12%,37%,65%); stroke-linecap: butt; stroke-width: 0.5; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<text x="424" y="128" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,37%,65%); stroke:none;" transform="translate(0,256) scale(1,-1)">loop: many turns</text>
+			<rect x="20" y="109" width="10" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<text x="35" y="110" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 10px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,220) scale(1,-1)">decision node: start capable</text>
+			<rect x="20" y="89" width="10" height="10" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
+			<text x="35" y="90" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 10px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,180) scale(1,-1)">leaf node: a small model is often enough</text>
+			<text x="20" y="60" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,120) scale(1,-1)">"Tends to", not "always":</text>
+			<text x="20" y="46" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,92) scale(1,-1)">the evaluation decides each one.</text>
+		</g>
+	</g>
+</svg>

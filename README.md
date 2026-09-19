@@ -1,45 +1,69 @@
-# Product Case Studies
+# Decisions in AI Systems
 
-Written case studies on product decisions in AI systems — how a call was framed, what was measured,
-what was chosen, and what was deliberately left out.
+Write-ups on how to choose, configure and evaluate LLMs in production systems. Each one takes a
+single real decision and works through the reasoning, and where the argument is quantitative it
+includes the code to reproduce it.
 
-I work on AI products end to end: deciding what ships and building the systems underneath. These
-write-ups are about the deciding half.
+I build AI agents and the evaluation systems that decide how they're configured.
 
 ---
 
-## Case studies
+## 1. [Cheaper per token, more expensive per task](cheaper-per-token/article.md)
 
-### [The cheaper model won on price. We didn't switch.](case-study.md)
+**Why downgrading the model in an agentic system often raises your LLM bill.**
 
-Setting the bar for an AI model change on an internal knowledge and meeting-notes product — and why
-cost was the last thing we looked at.
+In an agentic loop you pay per *completed task*, not per token, and those two can move in opposite
+directions. A cheaper model at the orchestrator takes more turns. Each extra turn re-sends the whole
+conversation, so tokens grow faster than turns, and a lower success rate compounds it. In the worked
+example, a model 4× cheaper per token comes out **16% more expensive per successful task**, while
+the same model on a well-scoped leaf node is **75% cheaper**.
 
-**The decision:** accuracy *gates* before cost is considered, rather than the two being weighed
-together. Weighing them sounds more balanced and is how you talk yourself into a worse product: the
-cost figure is precise and the quality figure is noisy, and precise numbers win arguments against
-fuzzy ones regardless of which matters more.
+The conclusion: evaluate every node that calls a model on accuracy, latency and cost *per completed
+task*, and let the measurements assign the models.
 
-**Also covers:** why "does the output look fine?" fails for this class of product, the four metrics
-we scored against, three things I chose not to build, and why the benchmark outlived the decision it
-was built for.
+| | |
+|---|---|
+| 📄 Article | [`article.md`](cheaper-per-token/article.md) · [PDF](cheaper-per-token/article.pdf) |
+| 🧮 Cost model | [`cost_model.py`](cheaper-per-token/cost_model.py): reproduces every number, and you can plug in your own agent's parameters |
+| 💬 Short version | [`linkedin-post.md`](cheaper-per-token/linkedin-post.md) |
 
-- 📄 [Full case study](case-study.md) · [PDF](pdf/the-cheaper-model.pdf)
-- 💬 [LinkedIn version](linkedin-post.md)
+```bash
+python cheaper-per-token/cost_model.py
+```
+
+No dependencies beyond the Python standard library.
+
+---
+
+## 2. [The cheaper model won on price. We didn't switch.](quality-before-cost/case-study.md)
+
+**Setting the bar for a model change on an internal knowledge product, and why cost came last.**
+
+A product decision on a meeting-notes system: accuracy *gates* before cost is considered, rather
+than the two being weighed together. Weighing them sounds balanced, but it's how teams talk
+themselves into a worse product: the cost figure is precise, the quality figure is noisy, and the
+precise number wins the argument regardless of which one matters more.
+
+| | |
+|---|---|
+| 📄 Case study | [`case-study.md`](quality-before-cost/case-study.md) · [PDF](quality-before-cost/case-study.pdf) |
+| 💬 Short version | [`linkedin-post.md`](quality-before-cost/linkedin-post.md) |
+
+---
+
+## The thread between them
+
+Both pieces make one argument from two directions. **The price per token is the easiest number to
+read and the least useful one to decide on.** The first shows it quantitatively for agents, and the
+second shows it as a product decision. In both, the thing that settles the question is an
+evaluation you ran on your own system.
 
 ---
 
 ## About these write-ups
 
-Each one takes a single real decision and reconstructs the reasoning. They describe how a decision
-was made rather than the systems behind it — no proprietary architecture, no client details, no
-internal specifics.
+They describe how decisions were made, not the systems behind them: no proprietary architecture, no
+client details, no internal specifics. Worked examples use illustrative parameters and say so, and
+the code that produces them is included so every figure can be checked.
 
-Where a figure appears, it describes scope: how many meetings were in a benchmark set, how large a
-team was. I don't publish outcome metrics I can't stand behind.
-
----
-
-## Contact
-
-- GitHub: [@MohanVishe](https://github.com/MohanVishe)
+**Contact:** [@MohanVishe](https://github.com/MohanVishe)

@@ -24,7 +24,11 @@ cost per completed task, and a loop that decides with gates: quality first, then
 cost. It closes with a small tool-calling agent built as a test subject, evaluated that way on two
 local models.
 
-<!--README_EXP-->
+**Measured on that agent**, running both nodes on a 3B and a 7B model, 120 conversations each:
+at the orchestrator the 3B would need to be **3.84× cheaper per token** just to break even per
+successful task, while passing 22% of tasks against 63% (and 4% against 50% when the same
+conversation has to work five times running). At the leaf node, break-even is **1.13×**. Same two
+models, same system, opposite answers.
 
 ![Same two models, three different answers](cheaper-per-token/figures/three-answers.svg)
 

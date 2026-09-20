@@ -1,6 +1,6 @@
 # LinkedIn version
 
-*Long-form post, ~430 words. Link to the full article and the cost model at the end.*
+*Long-form post, ~450 words. Link to the article, the cost model and the experiment at the end.*
 
 ---
 
@@ -8,54 +8,54 @@ We switched an AI agent to a cheaper model to cut costs.
 
 It got more expensive.
 
-Here's why, because I think most teams will hit this the first time they try to cut an agent's LLM bill.
+Then I checked my own explanation, and found it was only half right. Here's the whole thing.
 
-**The orchestrator is the obvious target, and the worst one.**
+**Why the cheap model lost.** In an agent you don't pay per token, you pay per completed task. A weaker orchestrator picks the wrong tool, passes arguments that get rejected, and re-plans. Every one of those turns re-sends the entire conversation, so tokens grow faster than turns, and a lower success rate divides the bill by a smaller number.
 
-In an agent, the orchestrator reads the request, picks a tool, reads the result and decides what to do next. It runs every turn, so it's the biggest line on the bill. Downgrade it and the dashboard shows an immediate saving.
+Worked example: a model 4× cheaper per token, 16% MORE expensive per successful task.
 
-What the dashboard doesn't show is what happens to the loop.
+**Then I added prompt caching to the model, and the answer flipped.** Re-sent context billed at a tenth of the normal price, and the same cheap model came out 27% cheaper. Same two models, opposite conclusion.
 
-**Three things multiply between price per token and price per task.**
+What didn't flip: it still failed 40% of tasks against 10%, and it still made seven round trips against three.
 
-1️⃣ **Turn inflation.** A weaker model picks a plausible but wrong tool, passes a bad argument, reads the error, re-plans. Every misstep is another turn.
+So "use the cheap model" isn't a rule. Neither is "use the big model". The rule is: measure, per node, per completed task.
 
-2️⃣ **Context growth.** Every turn re-sends the whole conversation, so turn 7 costs far more than turn 1. In our worked example, 2.3× the turns meant 3.1× the tokens.
+**So I built a small agent and did it.** A support agent for a made-up shop: 8 tools, 4 policy rules, 24 graded conversations including multi-turn ones, each run 5 times, on a 3B and a 7B model, running locally on one GPU. 56 minutes, no API keys, zero cost.
 
-3️⃣ **Failure.** Cost per successful task is cost per attempt divided by success rate. A weaker orchestrator fails more, so the division hurts more.
+At the orchestrator:
 
-**The numbers:**
+→ Model calls per conversation: 4.3 vs 4.3. Identical.
+→ Average time per conversation: ~11s vs ~11s. Identical.
+→ Success rate: 22% vs 63%.
+→ Same conversation working 5 times out of 5: 4% vs 50%.
+→ Tokens per SUCCESSFUL task: 27,946 vs 7,285.
+→ Time per successful task: 51.7s vs 17.6s.
 
-A model 4× cheaper per token, at the orchestrator:
-→ Per attempt: about 23% cheaper. The dashboard says you won.
-→ Per *successful task*: **16% more expensive.**
+On every metric a cost dashboard shows, the downgrade looked free. On outcomes it wasn't close. The 3B would have to be 3.84× cheaper per token just to break even.
 
-The same cheap model on a narrow leaf node (one call, a fixed output format):
-→ **75% cheaper.**
+Then I ran the same two models on a leaf node in the same system, an intent classifier: one call, fixed output, no loop.
 
-Same model, opposite answers. It depends entirely on where it sits.
+→ Break-even ratio: 1.13×. The price gap passes almost straight through.
 
-**So the rule isn't "use big models."** It's this:
+Same two models. Same system. Opposite answers, two nodes apart.
 
-Put capable models where decisions get made: the orchestrator, the planner, the router. Their errors compound through every turn that follows.
+**What that means in practice:** evaluate every node that calls a model, on three things measured per completed task, not per call:
 
-Put cheap models where the work is well specified: extraction, classification, formatting. There the price gap passes straight through.
+✅ Accuracy (and how often it's right 5 times out of 5, not once)
+✅ Latency (p95, not the median — the median hid the problem here)
+✅ Cost per successful task, including the failures
 
-And evaluate **every node** that calls a model on three things, measured per completed task rather than per call:
-✅ Accuracy
-✅ Latency (seven fast round trips can lose to three slow ones)
-✅ Cost
+Then decide with gates, in order: quality, latency, cost. A config that fails the quality gate is out, however cheap it is.
 
-A cheaper model is only cheaper when its price advantage beats the token inflation times the success-rate gap. The pricing page gives you one of those three numbers. Only an evaluation gives you the other two.
-
-Full write-up, plus a small Python model you can run with your own agent's numbers: [link]
+Full write-up, the cost model, the test agent and every trace: [link]
 
 ---
 
 ## Posting notes
 
-- **Alternate openers:** *"Cheaper per token. More expensive per task."* / *"Your cost dashboard will tell you the cheap model is saving money. It might be lying."*
-- The two-line opener is doing the work. Keep it as two lines so it survives the "see more" fold.
-- Emoji markers are optional. Drop them if they don't suit your feed.
-- Link to the **repo folder**, not the PDF, so readers can find `cost_model.py`. The runnable model is the thing engineers will share.
-- If someone replies "just use routing": agree, and point them to the leaf-node case. It's the same argument.
+- **Alternate openers:** *"Cheaper per token. More expensive per task."* / *"I was wrong about why the cheap model cost more. The correction is more interesting than the original claim."*
+- The three-line opener is doing the work. Keep the blank lines so it survives the "see more" fold.
+- The caching flip is the most credible part of the post: it shows you checked your own argument. Don't cut it for length.
+- Link to the **repo**, not the PDF, so readers can run `cost_model.py` and the experiment themselves.
+- If someone replies "just use routing": agree, and point at the leaf-node numbers. It's the same argument.
+- If someone asks why Qwen 3B/7B: they were on the machine, same family and adjacent sizes is what the comparison needs, and the method is the point, not a leaderboard.

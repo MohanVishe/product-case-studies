@@ -57,7 +57,7 @@ later when the landscape moved. The rule for making the choice wasn't.
 The durable artifact from an AI product decision usually isn't the decision. It's the apparatus that
 let you make it — because you'll face the same question again in three months with different models.
 
-Full write-up, including what I'd do differently: [link]
+Full write-up, including what I'd do differently: https://github.com/MohanVishe/product-case-studies/tree/main/quality-before-cost
 
 ---
 

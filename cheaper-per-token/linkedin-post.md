@@ -47,7 +47,7 @@ Same two models. Same system. Opposite answers, two nodes apart.
 
 Then decide with gates, in order: quality, latency, cost. A config that fails the quality gate is out, however cheap it is.
 
-Full write-up, the cost model, the test agent and every trace: [link]
+Full write-up, the cost model, the test agent and every trace: https://github.com/MohanVishe/product-case-studies/tree/main/cheaper-per-token
 
 ---
 

@@ -32,18 +32,37 @@ INK, MUTED, FAINT, GRID, PANEL = C("#1f2328"), C("#656d76"), C("#9aa1a9"), C("#e
 BIG, SMALL = C("#1f5fa8"), C("#d4731c")            # capable model, cheaper model
 BIG_BG, SMALL_BG = C("#e7f0fb"), C("#fcefe3")
 GOOD, BAD = C("#2e7d4f"), C("#b3261e")
+PURPLE, TEAL, SLATE = C("#6f42c1"), C("#0f766e"), C("#475569")
 BASE_GREY = C("#c9ced4")
+CANVAS_BG, BOX_WHITE, ON_COLOUR = colors.white, colors.white, colors.white
 W = 680
+
+# Names whose colour is swapped for a CSS variable when rendering for the website, so the
+# figures follow its light/dark theme instead of sitting on a white box. See theme_svg().
+THEMED = ["INK", "MUTED", "FAINT", "GRID", "PANEL", "BOX_WHITE", "ON_COLOUR", "BASE_GREY",
+          "BIG", "SMALL", "BIG_BG", "SMALL_BG", "GOOD", "BAD", "PURPLE", "TEAL", "SLATE",
+          "CANVAS_BG"]
+CSS_VAR = {
+    "INK": "--color-ink", "MUTED": "--color-muted", "FAINT": "--color-faint",
+    "GRID": "--color-line", "PANEL": "--color-surface", "BOX_WHITE": "--color-surface",
+    "ON_COLOUR": "--fig-on-colour", "BASE_GREY": "--fig-grey", "BIG": "--fig-blue",
+    "SMALL": "--fig-orange", "BIG_BG": "--fig-blue-bg", "SMALL_BG": "--fig-orange-bg",
+    "GOOD": "--color-ok", "BAD": "--fig-red", "PURPLE": "--fig-purple", "TEAL": "--fig-teal",
+    "SLATE": "--fig-slate", "CANVAS_BG": "transparent",
+}
 
 
 # ---- primitives ---------------------------------------------------------------------------
 def canvas(h):
     d = Drawing(W, h)
-    d.add(Rect(0, 0, W, h, fillColor=colors.white, strokeColor=None))
+    d.add(Rect(0, 0, W, h, fillColor=CANVAS_BG, strokeColor=None))
     return d
 
 
-def text(d, x, y, s, size=11, font="Sans", color=INK, anchor="start"):
+def text(d, x, y, s, size=11, font="Sans", color=None, anchor="start"):
+    # Colour defaults are resolved here, not in the signature: theme_svg() swaps the module
+    # globals, and a default bound at import time would keep the original colour.
+    color = INK if color is None else color
     d.add(String(x, y, s, fontName=font, fontSize=size, fillColor=color, textAnchor=anchor))
 
 
@@ -65,8 +84,11 @@ def wrap(s, width, size, font="Sans"):
     return lines + ([cur] if cur else [])
 
 
-def box(d, x, y, w, h, head, body=None, fill=PANEL, edge=GRID, head_color=INK, size=10.5, radius=6):
+def box(d, x, y, w, h, head, body=None, fill=None, edge=None, head_color=None, size=10.5, radius=6):
     """A rounded box with a bold heading and optional wrapped body text, top-aligned."""
+    fill = PANEL if fill is None else fill
+    edge = GRID if edge is None else edge
+    head_color = INK if head_color is None else head_color
     d.add(Rect(x, y, w, h, rx=radius, ry=radius, fillColor=fill, strokeColor=edge, strokeWidth=1))
     ty = y + h - 18
     for ln in wrap(head, w - 20, size + 0.5, "Sans-B"):
@@ -79,7 +101,8 @@ def box(d, x, y, w, h, head, body=None, fill=PANEL, edge=GRID, head_color=INK, s
             ty -= size + 2
 
 
-def arrow(d, x1, y1, x2, y2, color=FAINT, width=1.4, dash=None, head=7):
+def arrow(d, x1, y1, x2, y2, color=None, width=1.4, dash=None, head=7):
+    color = FAINT if color is None else color
     d.add(Line(x1, y1, x2, y2, strokeColor=color, strokeWidth=width, strokeDashArray=dash))
     import math
     a = math.atan2(y2 - y1, x2 - x1)
@@ -189,10 +212,10 @@ def fig_placement():
     title(d, h, "Where each model tends to belong",
           "Decision nodes compound errors across turns; leaf nodes do one narrow job in one call.")
     y = 170
-    box(d, 20, y, 110, 60, "Customer message", fill=colors.white)
+    box(d, 20, y, 110, 60, "Customer message", fill=BOX_WHITE)
     box(d, 160, y, 130, 60, "Router", "classify the intent, 1 call", SMALL_BG, SMALL)
     box(d, 320, y - 10, 150, 80, "Orchestrator", "plan, pick tools, read results, decide again", BIG_BG, BIG)
-    box(d, 330, 50, 130, 50, "Tools", "orders, stock, tickets", fill=colors.white)
+    box(d, 330, 50, 130, 50, "Tools", "orders, stock, tickets", fill=BOX_WHITE)
     box(d, 500, y, 150, 60, "Formatter", "tool results to a fixed reply schema", SMALL_BG, SMALL)
     arrow(d, 130, y + 30, 158, y + 30)
     arrow(d, 290, y + 30, 318, y + 30)
@@ -222,11 +245,11 @@ def fig_trace():
     def ev(xx, lane, label, color, w=66):
         y = dict(lanes)[lane]
         d.add(Rect(xx, y, w, 22, rx=4, ry=4, fillColor=color, strokeColor=None))
-        text(d, xx + w / 2, y + 7, label, 8.5, "Sans-SB", colors.white, "middle")
+        text(d, xx + w / 2, y + 7, label, 8.5, "Sans-SB", ON_COLOUR, "middle")
 
-    seq = [("Customer", "turn 1", INK), ("Orchestrator", "call", BIG), ("Tools", "find", FAINT),
+    seq = [("Customer", "turn 1", SLATE), ("Orchestrator", "call", BIG), ("Tools", "find", FAINT),
            ("Orchestrator", "call", BIG), ("Tools", "orders", FAINT), ("Orchestrator", "reply", BIG),
-           ("Customer", "turn 2", INK), ("Orchestrator", "call", BIG), ("Tools", "update", FAINT),
+           ("Customer", "turn 2", SLATE), ("Orchestrator", "call", BIG), ("Tools", "update", FAINT),
            ("Orchestrator", "reply", BIG)]
     xs = []
     for lane, label, color in seq:
@@ -242,8 +265,8 @@ def fig_trace():
         text(d, (x1 + x2) / 2, y - 27, sub, 8.8, color=MUTED, anchor="middle")
 
     bracket(xs[1], xs[1] + 50, 216, "1 Node", "one call", BIG)
-    bracket(xs[1], xs[5] + 50, 170, "2 Trajectory", "tools, arguments, order, retries", C("#6f42c1"))
-    bracket(xs[0], xs[5] + 50, 124, "3 Turn", "was this reply right?", C("#0f766e"))
+    bracket(xs[1], xs[5] + 50, 170, "2 Trajectory", "tools, arguments, order, retries", PURPLE)
+    bracket(xs[0], xs[5] + 50, 124, "3 Turn", "was this reply right?", TEAL)
     bracket(xs[0], xs[9] + 50, 78, "4 Conversation", "end state + every reply, across turns", INK)
     text(d, xs[0], 22, "5 Reliability: run the whole conversation k times and count how often all k succeed.",
          10, "Sans-B", BAD)
@@ -263,15 +286,15 @@ def fig_eval_loop():
              ("3 Run k times", "every candidate config, same tasks, same seeds"),
              ("4 Grade", "end state first, rubric judge second, humans spot-check")]
     for i, (hd, body) in enumerate(steps):
-        box(d, col(i), y1, bw, bh, hd, body, colors.white, GRID)
+        box(d, col(i), y1, bw, bh, hd, body, BOX_WHITE, GRID)
         if i:
             arrow(d, col(i) - gap + 1, y1 + bh / 2, col(i) - 2, y1 + bh / 2)
     lower = [(3, "5a Quality gate", "success rate and pass^k above the bar?", GOOD),
-             (2, "5b Latency gate", "p95 per conversation within budget?", C("#0f766e")),
+             (2, "5b Latency gate", "p95 per conversation within budget?", TEAL),
              (1, "5c Cost", "cheapest per successful task wins", BIG),
              (0, "6 Ship and monitor", "regression gate in CI; failures become new tasks", INK)]
     for j, (i, hd, body, c) in enumerate(lower):
-        box(d, col(i), y2, bw, bh, hd, body, colors.white, c, head_color=c)
+        box(d, col(i), y2, bw, bh, hd, body, BOX_WHITE, c, head_color=c)
         if j:
             arrow(d, col(i) + bw + gap - 1, y2 + bh / 2, col(i) + bw + 2, y2 + bh / 2, c)
     arrow(d, col(3) + bw / 2, y1, col(3) + bw / 2, y2 + bh + 2)
@@ -350,7 +373,7 @@ def fig_pass_k(s):
         pts = [(px(k), y0 + orch[m]["pass_hat_k"][str(k)] * ch) for k in ks]
         d.add(PolyLine([c for p in pts for c in p], strokeColor=col, strokeWidth=2.2))
         for p in pts:
-            d.add(Circle(p[0], p[1], 3.2, fillColor=col, strokeColor=colors.white, strokeWidth=1))
+            d.add(Circle(p[0], p[1], 3.2, fillColor=col, strokeColor=CANVAS_BG, strokeWidth=1))
         text(d, pts[-1][0] + 10, pts[-1][1] - 3, f"{short(m)}  {orch[m]['pass_hat_k'][str(ks[-1])]:.0%}",
              10.5, "Sans-B", col)
         text(d, pts[0][0] + 6, pts[0][1] + 8, f"{orch[m]['pass_hat_k']['1']:.0%}", 9.5, "Sans-SB", col)
@@ -401,18 +424,55 @@ FONT_STACK = {"Sans-B": ("'Segoe UI', 'Helvetica Neue', Arial, sans-serif", "bol
               "Sans": ("'Segoe UI', 'Helvetica Neue', Arial, sans-serif", "normal")}
 
 
-def to_svg(d):
-    svg = renderSVG.drawToString(d)
+def _fonts(svg):
     for name, (stack, weight) in FONT_STACK.items():
         svg = re.sub(rf"font-family\s*:\s*{name}\b", f"font-family: {stack}; font-weight: {weight}", svg)
         svg = svg.replace(f'font-family="{name}"', f'font-family="{stack}" font-weight="{weight}"')
     return svg
 
 
+def to_svg(d):
+    return _fonts(renderSVG.drawToString(d))
+
+
+def _sentinel(i):
+    """A colour no figure uses, unique after the renderer rounds it to whole percentages."""
+    return colors.Color((i * 15 + 5) / 255, 128 / 255, 200 / 255)
+
+
+def _hex(c):
+    return "#%02x%02x%02x" % (round(c.red * 255), round(c.green * 255), round(c.blue * 255))
+
+
+def theme_svg(name):
+    """Render a figure with CSS variables in place of fixed colours.
+
+    Used for the website, where the figures follow its light/dark theme instead of sitting on a
+    white rectangle. Each themed colour is drawn as a unique sentinel, then swapped for
+    var(--token, <the original colour>), so the file still renders correctly on its own.
+    """
+    original = {n: globals()[n] for n in THEMED}
+    globals().update({n: _sentinel(i) for i, n in enumerate(THEMED)})
+    try:
+        svg = renderSVG.drawToString(build(name))
+    finally:
+        globals().update(original)
+    for i, n in enumerate(THEMED):
+        c = _sentinel(i)
+        rgb = "rgb(%d%%,%d%%,%d%%)" % (c.red * 100, c.green * 100, c.blue * 100)
+        var = CSS_VAR[n]
+        svg = svg.replace(rgb, "transparent" if var == "transparent" else f"var({var}, {_hex(original[n])})")
+    return _fonts(svg)
+
+
 if __name__ == "__main__":
-    os.makedirs(OUT, exist_ok=True)
+    import sys
+
+    site = sys.argv[sys.argv.index("--site") + 1] if "--site" in sys.argv else None
     names = list(CONCEPT) + (list(EXPERIMENT) if os.path.exists(SUMMARY) else [])
+    out = site or OUT
+    os.makedirs(out, exist_ok=True)
     for n in names:
-        with open(os.path.join(OUT, f"{n}.svg"), "w", encoding="utf-8") as f:
-            f.write(to_svg(build(n)))
-        print("wrote", f"figures/{n}.svg")
+        with open(os.path.join(out, f"{n}.svg"), "w", encoding="utf-8") as f:
+            f.write(theme_svg(n) if site else to_svg(build(n)))
+        print("wrote", os.path.join(out, f"{n}.svg"))

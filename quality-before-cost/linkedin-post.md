@@ -7,7 +7,7 @@
 A cheaper model came up for one of our AI features. Same capability class, materially lower cost per
 call, drop-in swap.
 
-I said no — and that we wouldn't look at the price until it had proved itself on accuracy first.
+I said not yet — and that we wouldn't look at the price until it had proved itself on accuracy first.
 
 Here's the reasoning, because I think the ordering is the part most teams get wrong.
 
@@ -29,8 +29,8 @@ and the last thing it loses. What degrades first is the unglamorous structural w
 action item was assigned, catching that two mentions are the same task, not inventing an owner for
 something nobody claimed.
 
-You don't see that by reading a sample and nodding. You find out weeks later, from someone who never
-got told about a thing they were supposed to do.
+You don't see that by reading a sample and nodding. You find out later, from someone who never got
+told about a thing they were supposed to do.
 
 **So we set two rules.**
 
@@ -48,23 +48,23 @@ to be disciplined in the moment.
 We scored four things, each mapped to a specific way a real person gets let down: missed actions,
 duplicates, coverage, and ownership accuracy.
 
-The cheaper model didn't clear the bar. It was good at readable notes and worse at the structural
-work — exactly what eyeballing outputs would have missed.
+The failure it was built to catch is a model that's good at readable notes and worse at the
+structural work — exactly what eyeballing outputs would miss.
 
-**The part I didn't expect:** the benchmark outlived the decision. The model choice was reversed
-later when the landscape moved. The rule for making the choice wasn't.
+**The part that lasted:** the benchmark outlived the decision. It became the precondition for every
+prompt or model change on the product: run the set, show the four numbers, then talk.
 
 The durable artifact from an AI product decision usually isn't the decision. It's the apparatus that
 let you make it — because you'll face the same question again in three months with different models.
 
-Full write-up, including what I'd do differently: https://github.com/MohanVishe/product-case-studies/tree/main/quality-before-cost
+Full write-up, including what I'd build first next time: https://github.com/MohanVishe/product-case-studies/tree/main/quality-before-cost
 
 ---
 
 ## Posting notes
 
-- **Best opening line alternatives** if the first doesn't land: *"The cheaper model won on price. We
-  didn't switch."* / *"We refused to look at the price until the model had earned it."*
+- **Best opening line alternative** if the first doesn't land: *"We refused to look at the price
+  until the model had earned it."*
 - Keep the bold subheads — they carry the skim.
 - No hashtag block. One or two at most, if any.
 - Post mid-week, morning IST.

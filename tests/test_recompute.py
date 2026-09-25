@@ -1,6 +1,7 @@
 """Smoke test: the committed results are exactly what analyze.py computes from the saved traces,
 and the worked example in the article is exactly what cost_model.py computes."""
 import json
+import math
 import shutil
 from pathlib import Path
 
@@ -26,7 +27,24 @@ def recomputed(tmp_path_factory):
     return out
 
 
-@pytest.mark.parametrize("name", ["summary.json", "summary.md", "regrade.md"])
+def same(a, b):
+    """Equal, except floats may differ in the last bits: Python 3.12 changed how sum() adds floats."""
+    if isinstance(a, float) or isinstance(b, float):
+        return math.isclose(a, b, rel_tol=1e-9, abs_tol=1e-12)
+    if isinstance(a, dict):
+        return a.keys() == b.keys() and all(same(a[k], b[k]) for k in a)
+    if isinstance(a, list):
+        return len(a) == len(b) and all(same(x, y) for x, y in zip(a, b))
+    return a == b
+
+
+def test_committed_summary_json_matches_a_fresh_recompute(recomputed):
+    fresh = json.loads((recomputed / "summary.json").read_text(encoding="utf-8"))
+    committed = json.loads((RESULTS / "summary.json").read_text(encoding="utf-8"))
+    assert same(fresh, committed), "summary.json is stale: run `python analyze.py` and commit the result"
+
+
+@pytest.mark.parametrize("name", ["summary.md", "regrade.md"])
 def test_committed_results_match_a_fresh_recompute(recomputed, name):
     fresh = (recomputed / name).read_text(encoding="utf-8")
     committed = (RESULTS / name).read_text(encoding="utf-8").replace("\r\n", "\n")

@@ -309,6 +309,12 @@ def short(m):
     return m.split(":")[-1].upper()
 
 
+def share(v):
+    """A percentage, whole unless it sits exactly on a half (62.5% would otherwise print as 62%)."""
+    p = round(v * 100, 6)
+    return f"{p:.1f}%" if p % 1 == 0.5 else f"{round(p):.0f}%"
+
+
 def fig_experiment(s):
     orch, rout = s["orchestrator"], s["router"]
     models = sorted(orch, key=lambda m: "7b" in m)
@@ -316,6 +322,10 @@ def fig_experiment(s):
     any_m = orch[models[0]]
     k = any_m["trials_per_task"]
     pw, ph = 205, 84
+    # Per-call latency is mostly a fixed cost per request in this harness (see analyze.py's
+    # latency fit), so it gets no "better" dot: the small gap between models is not model speed.
+    fixed = [orch[m]["latency_fit"]["fixed_s_per_call"] for m in models if "latency_fit" in orch[m]]
+    per_call_label = f"Latency / call (~{sum(fixed) / len(fixed):.0f} s fixed)" if fixed else "Latency / model call"
     h = 150 + 3 * ph + (ph + 40 if rout else 0)
     d = canvas(h)
     title(d, h, "Measured: the same agent on a 3B and a 7B model",
@@ -323,7 +333,7 @@ def fig_experiment(s):
           "Green dot = better. No dot = neither is better.")
     rows = [
         ("QUALITY", [
-            ("Success rate", lambda m: orch[m]["success_rate"], lambda v: f"{v:.0%}", "high"),
+            ("Success rate", lambda m: orch[m]["success_rate"], share, "high"),
             (f"All {k} runs succeed (pass^{k})", lambda m: orch[m]["pass_hat_k"][str(k)], lambda v: f"{v:.0%}", "high"),
             ("Identified the customer first", lambda m: orch[m]["identify_first_rate"], lambda v: f"{v:.0%}", "high")]),
         ("TRAJECTORY AND COST", [
@@ -331,7 +341,7 @@ def fig_experiment(s):
             ("Rejected tool calls / conv.", lambda m: orch[m]["tool_errors_per_episode"], lambda v: f"{v:.2f}", "low"),
             ("Tokens / successful task", lambda m: orch[m]["blended_tokens_per_success"], lambda v: f"{v:,.0f}", "low")]),
         ("LATENCY", [
-            ("Latency / model call", lambda m: orch[m]["latency_per_call_s"], lambda v: f"{v:.2f} s", "low"),
+            (per_call_label, lambda m: orch[m]["latency_per_call_s"], lambda v: f"{v:.2f} s", None),
             ("Conversation, p95", lambda m: orch[m]["latency_p95_s"], lambda v: f"{v:.1f} s", "low"),
             ("Time / successful task", lambda m: orch[m]["time_per_success_s"], lambda v: f"{v:.1f} s", "low")]),
     ]
@@ -347,7 +357,7 @@ def fig_experiment(s):
         y -= 22
         rp = [("Accuracy", lambda m: rout[m]["accuracy"], lambda v: f"{v:.0%}", "high"),
               ("Tokens / correct call", lambda m: rout[m]["blended_tokens_per_success"], lambda v: f"{v:,.0f}", "low"),
-              ("Latency / call", lambda m: rout[m]["latency_per_call_s"], lambda v: f"{v:.2f} s", "low")]
+              (per_call_label, lambda m: rout[m]["latency_per_call_s"], lambda v: f"{v:.2f} s", None)]
         for i, (lab, f, fmt, better) in enumerate(rp):
             hbar_panel(d, 20 + i * (pw + 22), y, pw, lab, [(short(m), f(m), cols[m]) for m in models], fmt, better)
     return d
@@ -376,7 +386,7 @@ def fig_pass_k(s):
             d.add(Circle(p[0], p[1], 3.2, fillColor=col, strokeColor=CANVAS_BG, strokeWidth=1))
         text(d, pts[-1][0] + 10, pts[-1][1] - 3, f"{short(m)}  {orch[m]['pass_hat_k'][str(ks[-1])]:.0%}",
              10.5, "Sans-B", col)
-        text(d, pts[0][0] + 6, pts[0][1] + 8, f"{orch[m]['pass_hat_k']['1']:.0%}", 9.5, "Sans-SB", col)
+        text(d, pts[0][0] + 6, pts[0][1] + 8, share(orch[m]['pass_hat_k']['1']), 9.5, "Sans-SB", col)
     return d
 
 

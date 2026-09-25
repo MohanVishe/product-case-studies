@@ -4,18 +4,20 @@
    "episodes": 120,
    "tasks": 24,
    "trials_per_task": 5,
-   "success_rate": 0.21666666666666667,
+   "successes": 24,
+   "success_rate": 0.2,
    "pass_hat_k": {
-    "1": 0.21666666666666667,
-    "2": 0.1,
-    "3": 0.058333333333333334,
+    "1": 0.2,
+    "2": 0.09166666666666666,
+    "3": 0.05416666666666667,
     "4": 0.041666666666666664,
     "5": 0.041666666666666664
    },
+   "tasks_passing_every_run": 1,
    "by_category": {
-    "lookup": 0.5333333333333333,
+    "lookup": 0.5666666666666667,
     "multi-hop": 0.0,
-    "write": 0.26666666666666666,
+    "write": 0.16666666666666666,
     "multi-turn": 0.06666666666666667
    },
    "calls_per_episode": 4.258333333333334,
@@ -27,12 +29,19 @@
    "input_tokens_per_episode": 5155.766666666666,
    "output_tokens_per_episode": 224.775,
    "blended_tokens_per_episode": 6054.866666666667,
-   "blended_tokens_per_success": 27945.53846153846,
+   "blended_tokens_per_success": 30274.333333333332,
+   "cached_blended_tokens_per_success": 12633.170833333335,
    "latency_per_call_s": 2.631563600782779,
    "latency_p50_s": 7.4145,
    "latency_p95_s": 25.017249999999997,
    "latency_mean_s": 11.206075,
-   "time_per_success_s": 51.72034615384616,
+   "time_per_success_s": 56.030375,
+   "latency_fit": {
+    "calls": 511,
+    "fixed_s_per_call": 1.940347114614469,
+    "decode_tokens_per_s": 163.04510829785187,
+    "s_per_1k_input_tokens": 0.30350946570480536
+   },
    "input_tokens_by_call": {
     "0": 764.375,
     "1": 902.7666666666667,
@@ -45,9 +54,21 @@
     "8": 2230.0476190476193,
     "9": 2318.5714285714284
    },
+   "conversations_reaching_call": {
+    "0": 120,
+    "1": 120,
+    "2": 64,
+    "3": 52,
+    "4": 35,
+    "5": 34,
+    "6": 23,
+    "7": 21,
+    "8": 21,
+    "9": 21
+   },
    "failure_modes": {
-    "wrong or incomplete answer": 44,
-    "missed escalation": 6,
+    "wrong or incomplete answer": 43,
+    "missed escalation": 9,
     "never produced a usable tool call": 1,
     "wrong or missing action": 22,
     "looped without answering": 21
@@ -57,19 +78,21 @@
    "episodes": 120,
    "tasks": 24,
    "trials_per_task": 5,
-   "success_rate": 0.6333333333333333,
+   "successes": 75,
+   "success_rate": 0.625,
    "pass_hat_k": {
-    "1": 0.6333333333333333,
+    "1": 0.625,
     "2": 0.5583333333333333,
     "3": 0.525,
     "4": 0.5083333333333333,
     "5": 0.5
    },
+   "tasks_passing_every_run": 12,
    "by_category": {
     "lookup": 0.8666666666666667,
     "multi-hop": 0.4666666666666667,
-    "write": 0.8,
-    "multi-turn": 0.4
+    "write": 0.7333333333333333,
+    "multi-turn": 0.43333333333333335
    },
    "calls_per_episode": 4.325,
    "tool_calls_per_episode": 2.9916666666666667,
@@ -80,12 +103,19 @@
    "input_tokens_per_episode": 4125.666666666667,
    "output_tokens_per_episode": 121.975,
    "blended_tokens_per_episode": 4613.566666666667,
-   "blended_tokens_per_success": 7284.578947368421,
+   "blended_tokens_per_success": 7381.706666666667,
+   "cached_blended_tokens_per_success": 2980.2266666666665,
    "latency_per_call_s": 2.5764026974951832,
    "latency_p50_s": 10.1325,
    "latency_p95_s": 20.796349999999997,
    "latency_mean_s": 11.142941666666667,
-   "time_per_success_s": 17.59411842105263,
+   "time_per_success_s": 17.828706666666665,
+   "latency_fit": {
+    "calls": 519,
+    "fixed_s_per_call": 2.1757451977174975,
+    "decode_tokens_per_s": 75.95641310156367,
+    "s_per_1k_input_tokens": 0.030780116121475548
+   },
    "input_tokens_by_call": {
     "0": 764.375,
     "1": 836.5,
@@ -97,8 +127,19 @@
     "7": 1424.111111111111,
     "8": 1544.8
    },
+   "conversations_reaching_call": {
+    "0": 120,
+    "1": 120,
+    "2": 108,
+    "3": 72,
+    "4": 37,
+    "5": 27,
+    "6": 13,
+    "7": 9,
+    "8": 5
+   },
    "failure_modes": {
-    "wrong or incomplete answer": 28,
+    "wrong or incomplete answer": 29,
     "wrong or missing action": 13,
     "missed escalation": 3
    }
@@ -107,34 +148,102 @@
  "router": {
   "qwen2.5-coder:3b": {
    "calls": 144,
+   "messages": 48,
+   "runs_per_message": 3,
+   "correct": 125,
    "accuracy": 0.8680555555555556,
    "unparseable": 0.0,
    "input_tokens_per_call": 117.58333333333333,
    "output_tokens_per_call": 2.875,
    "blended_tokens_per_success": 148.704,
    "latency_per_call_s": 2.2475277777777776,
-   "latency_p95_s": 2.3605500000000004
+   "latency_p95_s": 2.3605500000000004,
+   "fastest_call": {
+    "latency_s": 2.061,
+    "input_tokens": 113,
+    "output_tokens": 3
+   }
   },
   "qwen2.5-coder:7b": {
    "calls": 144,
+   "messages": 48,
+   "runs_per_message": 3,
+   "correct": 141,
    "accuracy": 0.9791666666666666,
    "unparseable": 0.013888888888888888,
    "input_tokens_per_call": 117.58333333333333,
    "output_tokens_per_call": 2.8402777777777777,
    "blended_tokens_per_success": 131.68794326241135,
    "latency_per_call_s": 2.369270833333333,
-   "latency_p95_s": 2.398
+   "latency_p95_s": 2.398,
+   "fastest_call": {
+    "latency_s": 2.123,
+    "input_tokens": 116,
+    "output_tokens": 2
+   }
   }
  },
  "output_weight": 4,
+ "cache_discount": 0.1,
+ "regraded": {
+  "changed": 9,
+  "pass_to_fail": 6,
+  "fail_to_pass": 3
+ },
  "comparisons": [
   {
    "node": "orchestrator",
-   "break_even_price_ratio": 3.836259949057712
+   "break_even_price_ratio": 4.1012647481702516,
+   "break_even_price_ratio_cached": 4.238996642313561
   },
   {
    "node": "router",
    "break_even_price_ratio": 1.1292149935372684
   }
- ]
+ ],
+ "ci95_orchestrator": {
+  "success_rate:qwen2.5-coder:3b": [
+   0.1,
+   0.31666666666666665
+  ],
+  "success_rate:qwen2.5-coder:7b": [
+   0.45,
+   0.7916666666666666
+  ],
+  "success_rate_difference": [
+   0.26666666666666666,
+   0.5916666666666667
+  ],
+  "break_even_price_ratio": [
+   2.410672893536134,
+   7.521630957788394
+  ],
+  "break_even_price_ratio_cached": [
+   2.633050234928485,
+   7.611171410934906
+  ],
+  "resamples": 10000,
+  "resamples_with_defined_break_even": 10000
+ },
+ "break_even_by_output_weight": {
+  "1": 3.958477204017131,
+  "2": 4.008730266194212,
+  "4": 4.1012647481702516,
+  "8": 4.259783951020622
+ },
+ "ci95_router": {
+  "accuracy:qwen2.5-coder:3b": [
+   0.7986111111111112,
+   0.9305555555555556
+  ],
+  "accuracy:qwen2.5-coder:7b": [
+   0.9444444444444444,
+   1.0
+  ],
+  "break_even_price_ratio": [
+   1.0446640912682048,
+   1.2358324797428404
+  ],
+  "resamples": 10000
+ }
 }

@@ -28,22 +28,22 @@
 			<text x="276.8289794921875" y="34" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,68) scale(1,-1)">k=3</text>
 			<text x="384.3289794921875" y="34" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,68) scale(1,-1)">k=4</text>
 			<text x="491.8289794921875" y="34" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,68) scale(1,-1)">k=5</text>
-			<polyline points="70 86.83333, 177.5 67, 285 59.91667, 392.5 57.08333, 500 57.08333" style="stroke: rgb(83%,45%,10%); stroke-linecap: butt; stroke-width: 2.2; fill: None; fill-rule: evenodd;"/>
-			<circle cx="70.0" cy="86.83333333333334" r="3.2" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
-			<circle cx="177.5" cy="67.0" r="3.2" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
-			<circle cx="285.0" cy="59.916666666666664" r="3.2" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
+			<polyline points="70 84, 177.5 65.58333, 285 59.20833, 392.5 57.08333, 500 57.08333" style="stroke: rgb(83%,45%,10%); stroke-linecap: butt; stroke-width: 2.2; fill: None; fill-rule: evenodd;"/>
+			<circle cx="70.0" cy="84.0" r="3.2" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
+			<circle cx="177.5" cy="65.58333333333333" r="3.2" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
+			<circle cx="285.0" cy="59.208333333333336" r="3.2" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
 			<circle cx="392.5" cy="57.083333333333336" r="3.2" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
 			<circle cx="500.0" cy="57.083333333333336" r="3.2" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
 			<text x="510.0" y="54.083333333333336" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10.5px;fill: rgb(83%,45%,10%); stroke:none;" transform="translate(0,108) scale(1,-1)">3B  4%</text>
-			<text x="76.0" y="94.83333333333334" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 9.5px;fill: rgb(83%,45%,10%); stroke:none;" transform="translate(0,189) scale(1,-1)">22%</text>
-			<polyline points="70 157.6667, 177.5 144.9167, 285 139.25, 392.5 136.4167, 500 135" style="stroke: rgb(12%,37%,65%); stroke-linecap: butt; stroke-width: 2.2; fill: None; fill-rule: evenodd;"/>
-			<circle cx="70.0" cy="157.66666666666666" r="3.2" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<text x="76.0" y="92.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 9.5px;fill: rgb(83%,45%,10%); stroke:none;" transform="translate(0,184) scale(1,-1)">20%</text>
+			<polyline points="70 156.25, 177.5 144.9167, 285 139.25, 392.5 136.4167, 500 135" style="stroke: rgb(12%,37%,65%); stroke-linecap: butt; stroke-width: 2.2; fill: None; fill-rule: evenodd;"/>
+			<circle cx="70.0" cy="156.25" r="3.2" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
 			<circle cx="177.5" cy="144.91666666666669" r="3.2" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
 			<circle cx="285.0" cy="139.25" r="3.2" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
 			<circle cx="392.5" cy="136.41666666666666" r="3.2" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
 			<circle cx="500.0" cy="135.0" r="3.2" style="stroke: rgb(100%,100%,100%); stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
 			<text x="510.0" y="132.0" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10.5px;fill: rgb(12%,37%,65%); stroke:none;" transform="translate(0,264) scale(1,-1)">7B  50%</text>
-			<text x="76.0" y="165.66666666666666" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 9.5px;fill: rgb(12%,37%,65%); stroke:none;" transform="translate(0,331) scale(1,-1)">63%</text>
+			<text x="76.0" y="164.25" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 9.5px;fill: rgb(12%,37%,65%); stroke:none;" transform="translate(0,328) scale(1,-1)">62.5%</text>
 		</g>
 	</g>
 </svg>

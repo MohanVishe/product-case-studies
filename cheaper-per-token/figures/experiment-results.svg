@@ -16,12 +16,12 @@
 			<text x="20" y="450" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10px;fill: rgb(12%,37%,65%); stroke:none;" transform="translate(0,900) scale(1,-1)">ORCHESTRATOR (decision node)</text>
 			<text x="20" y="424" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,848) scale(1,-1)">Success rate</text>
 			<text x="20" y="405" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,810) scale(1,-1)">3B</text>
-			<rect x="54" y="402" width="32.5" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
-			<text x="92.5" y="405" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,810) scale(1,-1)">22%</text>
+			<rect x="54" y="402" width="30.400000000000006" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
+			<text x="90.4" y="405" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,810) scale(1,-1)">20%</text>
 			<text x="20" y="385" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,770) scale(1,-1)">7B</text>
 			<rect x="54" y="382" width="95.0" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
-			<text x="155.0" y="385" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,770) scale(1,-1)">63%</text>
-			<circle cx="182.1669921875" cy="388.5" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,49%,30%); fill-rule: evenodd;"/>
+			<text x="155.0" y="385" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,770) scale(1,-1)">62.5%</text>
+			<circle cx="190.205810546875" cy="388.5" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,49%,30%); fill-rule: evenodd;"/>
 			<text x="247" y="424" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,848) scale(1,-1)">All 5 runs succeed (pass^5)</text>
 			<text x="247" y="405" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,810) scale(1,-1)">3B</text>
 			<rect x="281" y="402" width="7.916666666666686" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
@@ -56,19 +56,18 @@
 			<text x="474" y="340" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,680) scale(1,-1)">Tokens / successful task</text>
 			<text x="474" y="321" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,642) scale(1,-1)">3B</text>
 			<rect x="508" y="318" width="95.0" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
-			<text x="609.0" y="321" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,642) scale(1,-1)">27,946</text>
+			<text x="609.0" y="321" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,642) scale(1,-1)">30,274</text>
 			<text x="474" y="301" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,602) scale(1,-1)">7B</text>
-			<rect x="508" y="298" width="24.763702476245044" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
-			<text x="538.763702476245" y="301" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,602) scale(1,-1)">7,285</text>
-			<circle cx="571.19558724187" cy="304.5" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,49%,30%); fill-rule: evenodd;"/>
-			<text x="20" y="256" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,512) scale(1,-1)">Latency / model call</text>
+			<rect x="508" y="298" width="23.163586316241435" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<text x="537.1635863162414" y="301" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,602) scale(1,-1)">7,382</text>
+			<circle cx="569.5954710818664" cy="304.5" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,49%,30%); fill-rule: evenodd;"/>
+			<text x="20" y="256" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,512) scale(1,-1)">Latency / call (~2 s fixed)</text>
 			<text x="20" y="237" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,474) scale(1,-1)">3B</text>
 			<rect x="54" y="234" width="95.0" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
 			<text x="155.0" y="237" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,474) scale(1,-1)">2.63 s</text>
 			<text x="20" y="217" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,434) scale(1,-1)">7B</text>
 			<rect x="54" y="214" width="93.00867977853059" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
-			<text x="153.0086797785306" y="217" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,434) scale(1,-1)">2.58 s</text>
-			<circle cx="186.7765020441556" cy="220.5" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,49%,30%); fill-rule: evenodd;"/>
+			<text x="153.0086797785306" y="217" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,434) scale(1,-1)">2.58 s</text>
 			<text x="247" y="256" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,512) scale(1,-1)">Conversation, p95</text>
 			<text x="247" y="237" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,474) scale(1,-1)">3B</text>
 			<rect x="281" y="234" width="95.0" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
@@ -80,11 +79,11 @@
 			<text x="474" y="256" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,512) scale(1,-1)">Time / successful task</text>
 			<text x="474" y="237" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,474) scale(1,-1)">3B</text>
 			<rect x="508" y="234" width="95.0" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
-			<text x="609.0" y="237" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,474) scale(1,-1)">51.7 s</text>
+			<text x="609.0" y="237" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,474) scale(1,-1)">56.0 s</text>
 			<text x="474" y="217" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,434) scale(1,-1)">7B</text>
-			<rect x="508" y="214" width="32.316899910688335" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
-			<text x="546.3168999106883" y="217" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,434) scale(1,-1)">17.6 s</text>
-			<circle cx="580.0847221763133" cy="220.5" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,49%,30%); fill-rule: evenodd;"/>
+			<rect x="508" y="214" width="30.228730993382328" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
+			<text x="544.2287309933823" y="217" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,434) scale(1,-1)">17.8 s</text>
+			<circle cx="577.9965532590073" cy="220.5" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,49%,30%); fill-rule: evenodd;"/>
 			<text x="20" y="170" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 10px;fill: rgb(83%,45%,10%); stroke:none;" transform="translate(0,340) scale(1,-1)">ROUTER (leaf node)</text>
 			<text x="20" y="144" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,288) scale(1,-1)">Accuracy</text>
 			<text x="20" y="125" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,250) scale(1,-1)">3B</text>
@@ -102,11 +101,10 @@
 			<rect x="281" y="102" width="84.12924070589276" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
 			<text x="371.12924070589276" y="105" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,210) scale(1,-1)">132</text>
 			<circle cx="395.52230711214276" cy="108.5" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,49%,30%); fill-rule: evenodd;"/>
-			<text x="474" y="144" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,288) scale(1,-1)">Latency / call</text>
+			<text x="474" y="144" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 10.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,288) scale(1,-1)">Latency / call (~2 s fixed)</text>
 			<text x="474" y="125" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,250) scale(1,-1)">3B</text>
 			<rect x="508" y="122" width="90.11850223492343" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(83%,45%,10%); fill-rule: evenodd;"/>
-			<text x="604.1185022349234" y="125" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: bold; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,250) scale(1,-1)">2.25 s</text>
-			<circle cx="637.8863245005484" cy="128.5" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,49%,30%); fill-rule: evenodd;"/>
+			<text x="604.1185022349234" y="125" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,250) scale(1,-1)">2.25 s</text>
 			<text x="474" y="105" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(39%,42%,46%); stroke:none;" transform="translate(0,210) scale(1,-1)">7B</text>
 			<rect x="508" y="102" width="95.0" height="13" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(12%,37%,65%); fill-rule: evenodd;"/>
 			<text x="609.0" y="105" style="font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-weight: normal; font-size: 9.5px;fill: rgb(12%,13%,15%); stroke:none;" transform="translate(0,210) scale(1,-1)">2.37 s</text>

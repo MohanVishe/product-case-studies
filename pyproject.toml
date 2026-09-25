@@ -1,0 +1,20 @@
+[project]
+name = "product-case-studies"
+version = "1.1.0"
+description = "Write-ups on choosing and evaluating LLMs in production systems, with the code and traces behind every number."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+# cost_model.py, the experiment and analyze.py use the standard library only.
+# reportlab draws the figures and builds the PDFs.
+dependencies = ["reportlab==5.0.1"]
+
+[dependency-groups]
+dev = ["pytest==9.1.1"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["cheaper-per-token", "cheaper-per-token/experiment"]

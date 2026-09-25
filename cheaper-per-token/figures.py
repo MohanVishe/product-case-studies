@@ -24,8 +24,9 @@ SUMMARY = os.path.join(os.environ.get("EVAL_RESULTS", os.path.join(HERE, "experi
 for _name, _file in (("Sans", "segoeui"), ("Sans-B", "segoeuib"), ("Sans-SB", "seguisb")):
     try:
         pdfmetrics.registerFont(TTFont(_name, f"C:/Windows/Fonts/{_file}.ttf"))
-    except Exception:          # not on Windows: fall back to the built-in Helvetica
-        pdfmetrics.registerFont(pdfmetrics.getFont("Helvetica-Bold" if "B" in _name else "Helvetica"))
+    except Exception:          # not on Windows: the same names, drawn in the built-in Helvetica
+        pdfmetrics.registerFont(pdfmetrics.Font(_name, "Helvetica-Bold" if "B" in _name else "Helvetica",
+                                                "WinAnsiEncoding"))
 
 C = colors.HexColor
 INK, MUTED, FAINT, GRID, PANEL = C("#1f2328"), C("#656d76"), C("#9aa1a9"), C("#e3e6ea"), C("#f6f8fa")

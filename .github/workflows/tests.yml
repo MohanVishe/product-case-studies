@@ -1,0 +1,31 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.14"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # Installs exactly what uv.lock pins (reportlab for the figures, pytest), then runs the
+      # graders' tests, the worked-example checks, and a recompute of results/ from the traces.
+      - name: Install
+        run: uv sync --locked
+
+      - name: Run tests
+        run: uv run pytest -v
+
+      - name: Cost model runs
+        run: uv run python cheaper-per-token/cost_model.py

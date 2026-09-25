@@ -1,7 +1,9 @@
 # Decisions in AI Systems
 
+[![tests](https://github.com/MohanVishe/product-case-studies/actions/workflows/tests.yml/badge.svg)](https://github.com/MohanVishe/product-case-studies/actions/workflows/tests.yml)
+
 Write-ups on how to choose, configure and evaluate LLMs in production systems. Each one takes a
-single real decision and works through the reasoning, and where the argument is quantitative it
+single decision and works through the reasoning, and where the argument is quantitative it
 includes the code to reproduce it.
 
 I build AI agents and the evaluation systems that decide how they're configured.
@@ -18,39 +20,48 @@ and a lower success rate compounds it: in the worked example, a model 4× cheape
 out **16% more expensive per successful task**. But the same arithmetic cuts both ways. With
 prompt caching it flips to 27% cheaper, and on a leaf node the cheap model is 75% cheaper.
 
+![The worked example: cost per attempt, per success, and per success with caching](cheaper-per-token/figures/three-answers.svg)
+
 So the answer is an evaluation, and the article lays out which one: five levels (node, trajectory,
 turn, multi-turn conversation, reliability over k runs), each measured on accuracy, latency and
 cost per completed task, and a loop that decides with gates: quality first, then latency, then
 cost. It closes with a small tool-calling agent built as a test subject, evaluated that way on two
 local models.
 
-**Measured on that agent**, running both nodes on a 3B and a 7B model, 120 conversations each:
-at the orchestrator the 3B would need to be **3.84× cheaper per token** just to break even per
-successful task, while passing 22% of tasks against 63% (and 4% against 50% when the same
-conversation has to work five times running). At the leaf node, break-even is **1.13×**. Same two
-models, same system, opposite answers.
-
-![Same two models, three different answers](cheaper-per-token/figures/three-answers.svg)
+**Measured on a 3B and a 7B model**, in two separate measurements: the agent loop (24 tasks × 5
+runs, 120 conversations per model) and a standalone single-call intent router in the same domain
+(48 messages × 3 runs). At the orchestrator the 3B would need to be **4.1× cheaper per token**
+(95% CI 2.4–7.5×) just to break even per successful task, while passing 20% of tasks against 62.5%
+(and 4% against 50% when the same conversation has to work five times running). Re-pricing the
+traces with prompt caching doesn't close that gap (4.24×), because it comes from the success rate.
+At the router, break-even is **1.13×** (95% CI 1.04–1.24×). Same two models, two kinds of node,
+opposite answers.
 
 | | |
 |---|---|
 | 📄 Article | [`article.md`](cheaper-per-token/article.md) · [PDF](cheaper-per-token/article.pdf) |
-| 🧪 Test agent + evaluation | [`experiment/`](cheaper-per-token/experiment/): 8-tool agent, 24 graded multi-turn tasks, a leaf-node router, traces and results |
+| 🧪 Test agent + evaluation | [`experiment/`](cheaper-per-token/experiment/): 8-tool agent, 24 graded multi-turn tasks, a separate single-call router task, traces, results and re-grades |
 | 🧮 Cost model | [`cost_model.py`](cheaper-per-token/cost_model.py): reproduces every illustrative number, including the caching case |
 | 📊 Figures | [`figures.py`](cheaper-per-token/figures.py): every chart and diagram, from the same data |
 | 💬 Short version | [`linkedin-post.md`](cheaper-per-token/linkedin-post.md) |
 
 ```bash
-python cheaper-per-token/cost_model.py                 # the arithmetic, standard library only
-cd cheaper-per-token/experiment && python analyze.py   # recompute results from the saved traces
+uv sync                                                  # Python 3.11+; reportlab and pytest, pinned in uv.lock
+uv run python cheaper-per-token/cost_model.py            # the arithmetic, standard library only
+uv run python cheaper-per-token/experiment/analyze.py    # recompute results, CIs and re-grades from the saved traces
+uv run python cheaper-per-token/figures.py               # redraw the figures
+uv run pytest                                            # graders, worked example, and results == fresh recompute
+uv run python build_pdfs.py                              # rebuild both PDFs from the markdown
 ```
 
-Re-running the experiment itself needs [Ollama](https://ollama.com) and two free local models
-(see [`experiment/README.md`](cheaper-per-token/experiment/README.md)). No API keys, no cost.
+Re-running the experiment itself needs [Ollama](https://ollama.com) and two free local models; the
+[experiment README](cheaper-per-token/experiment/README.md) has the commands, the exact setup of the
+published run (Ollama version, model digests, quantisation, GPU), and its limitations. No API keys,
+no cost.
 
 ---
 
-## 2. [The cheaper model won on price. We didn't switch.](quality-before-cost/case-study.md)
+## 2. [Price comes last: gating an AI model change on accuracy](quality-before-cost/case-study.md)
 
 **Setting the bar for a model change on an internal knowledge product, and why cost came last.**
 
@@ -81,6 +92,12 @@ own system.
 They describe how decisions were made, not the systems behind them: no proprietary architecture, no
 client details, no internal specifics. Worked examples use illustrative parameters and say so. The
 experiment uses a made-up store, open models and published traces. The code that produces every
-number is included, so every figure can be checked.
+number is included, so every figure can be checked, and CI recomputes the results from the traces
+on every push.
+
+**Models.** Qwen2.5-Coder 3B (Qwen Research License) and Qwen2.5-Coder 7B (Apache 2.0), by the Qwen
+team at Alibaba Cloud, run through Ollama. The store, its customers and orders are made up.
+
+**Licence.** [MIT](LICENSE).
 
 **Contact:** [@MohanVishe](https://github.com/MohanVishe)

@@ -83,6 +83,48 @@ TOOLS = [
 ]
 TOOL_NAMES = {t["function"]["name"] for t in TOOLS}
 
+# Run 2: the same 8 tools with all 13 parameters described, each with an example value. Run 1
+# described only find_customer.query, and the 3B's most common error was copying the parameter
+# schema into the argument. The example values are deliberately not in the store (no
+# customer C09, order 1234 or sku P999), so they show the format without hinting at any task's
+# answer. Names, types and required fields are unchanged, so Shop.call
+# validates both lists identically.
+def _p(description, example):
+    return {**S, "description": f"{description} Example: {example!r}."}
+
+
+TOOLS_DOCUMENTED = [
+    _fn("find_customer", "Find a customer by email address or name. Returns matching customer ids.",
+        {"query": _p("The customer's full email address, or part of their name.", "sam.lee@example.com")},
+        ["query"]),
+    _fn("list_orders", "List a customer's orders, newest first, with their status.",
+        {"customer_id": _p("A customer id as returned by find_customer: the letter C and two digits. "
+                           "Not an email address.", "C09")}, ["customer_id"]),
+    _fn("get_order", "Get full details of one order: owner, items, total, status, dates and delivery address.",
+        {"order_id": _p("The order number, digits only.", "1234")}, ["order_id"]),
+    _fn("search_products", "Search the catalogue by product name. Returns sku, price and units in stock.",
+        {"query": _p("One or more words from the product name.", "teapot")}, ["query"]),
+    _fn("cancel_order", "Cancel an order. Only possible while the order is still processing.",
+        {"order_id": _p("The order number to cancel, digits only.", "1234"),
+         "reason": _p("A short reason in the customer's words.", "no longer needed")},
+        ["order_id", "reason"]),
+    _fn("update_address", "Change the delivery address of an order. Only possible while it is still processing.",
+        {"order_id": _p("The order number, digits only.", "1234"),
+         "address": _p("The complete new delivery address as one string.", "12 Example Road, Springfield")},
+        ["order_id", "address"]),
+    _fn("request_return", "Open a return for one item of a delivered order.",
+        {"order_id": _p("The delivered order's number, digits only.", "1234"),
+         "sku": _p("The item's sku as shown by get_order: the letter P and three digits.", "P999"),
+         "reason": _p("A short reason in the customer's words.", "arrived damaged")},
+        ["order_id", "sku", "reason"]),
+    _fn("create_ticket", "Escalate to a human support agent when a request can't be completed under policy.",
+        {"customer_id": _p("The customer id from find_customer: the letter C and two digits.", "C09"),
+         "summary": _p("One sentence on what the customer wants and why it could not be done.",
+                       "wants order 1234 cancelled but it has already shipped")},
+        ["customer_id", "summary"]),
+]
+assert [t["function"]["parameters"]["properties"].keys() for t in TOOLS_DOCUMENTED] ==        [t["function"]["parameters"]["properties"].keys() for t in TOOLS]
+
 
 class ToolError(Exception):
     pass

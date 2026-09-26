@@ -26,6 +26,14 @@ It also reports what the point estimates alone would hide:
                 prompt in the same conversation) were billed at 10% of the input price
   latency fit   per-call latency regressed on output and input tokens: the intercept is the
                 fixed cost of one request, the output slope gives the decode speed
+
+Run 2 traces (results-run2/, `EVAL_RESULTS=... python analyze.py`) carry more, and get more:
+
+  Ollama time   each span's prompt_eval and eval durations as Ollama measured them, so the
+                model's own time and the request overhead (latency minus both) are separate
+  pipeline      the router's spans recorded in the same conversation: router tokens and time
+                per conversation, and tokens and time per successful task for the whole
+                pipeline (router + orchestrator), with a bootstrap CI on its break-even
 """
 import json
 import os
@@ -123,6 +131,25 @@ def episode_tokens(r):
     return full, cached
 
 
+def ollama_timing(spans):
+    """Model time vs request overhead, from Ollama's own durations (run 2 onwards). None if absent."""
+    if not spans or "eval_s" not in spans[0]:
+        return None
+    model_s = [s["prompt_eval_s"] + s["eval_s"] for s in spans]
+    overhead = [s["latency_s"] - m for s, m in zip(spans, model_s)]
+    return {"model_s_per_call": stats.mean(model_s),
+            "overhead_s_per_call": stats.mean(overhead),
+            "overhead_s_p50": pct(overhead, 50),
+            "decode_tokens_per_s": sum(s["output_tokens"] for s in spans)
+            / max(sum(s["eval_s"] for s in spans), 1e-9),
+            "prefill_tokens_per_s": sum(s["input_tokens"] for s in spans)
+            / max(sum(s["prompt_eval_s"] for s in spans), 1e-9)}
+
+
+def router_tokens(r):
+    return sum(blended(s["input_tokens"], s["output_tokens"]) for s in r.get("router_spans", []))
+
+
 def orchestrator(rows):
     out = {}
     for model in sorted({r["model"] for r in rows}):
@@ -198,6 +225,26 @@ def orchestrator(rows):
             "conversations_reaching_call": {i: len(v) for i, v in sorted(growth.items()) if len(v) >= 5},
             "failure_modes": dict(fails),
         }
+        timing = ollama_timing(spans)
+        if timing:
+            out[model]["ollama_timing"] = timing
+        if any("router_spans" in r for r in rs):
+            rspans = [s for r in rs for s in r.get("router_spans", [])]
+            rtok = sum(router_tokens(r) for r in rs)
+            rlat = sum(s["latency_s"] for s in rspans)
+            total = sum(blended(i, o) for i, o in zip(inp, outp)) + rtok
+            out[model]["pipeline"] = {
+                "router_calls_per_episode": len(rspans) / len(rs),
+                "router_blended_tokens_per_episode": rtok / len(rs),
+                "router_share_of_tokens": rtok / total,
+                "router_latency_per_call_s": stats.mean(s["latency_s"] for s in rspans),
+                "router_label_counts": {lab: sum(str(s["predicted"]) == lab for s in rspans)
+                                        for lab in sorted({str(s["predicted"]) for s in rspans})},
+                "blended_tokens_per_success": total / max(succ, 1),
+                "time_per_success_s": (sum(lat) + rlat) / max(succ, 1),
+            }
+            if ollama_timing(rspans):
+                out[model]["pipeline"]["router_ollama_timing"] = ollama_timing(rspans)
     return out
 
 
@@ -236,6 +283,10 @@ def router(rows):
             "fastest_call": {"latency_s": fastest["latency_s"], "input_tokens": fastest["input_tokens"],
                              "output_tokens": fastest["output_tokens"]},
         }
+        if ollama_timing(rs):
+            out[model]["ollama_timing"] = ollama_timing(rs)
+        if "temperature" in rs[0]:
+            out[model]["temperature"] = rs[0]["temperature"]
     return out
 
 
@@ -247,12 +298,15 @@ def compare(node, small, large):
     if "cached_blended_tokens_per_success" in small:
         out["break_even_price_ratio_cached"] = (small["cached_blended_tokens_per_success"]
                                                 / large["cached_blended_tokens_per_success"])
+    if "pipeline" in small and "pipeline" in large:
+        out["break_even_price_ratio_pipeline"] = (small["pipeline"]["blended_tokens_per_success"]
+                                                  / large["pipeline"]["blended_tokens_per_success"])
     return out
 
 
 def bootstrap_orchestrator(rows, small, large):
     """Paired bootstrap over tasks: resample the tasks, keep every run of each, for both models."""
-    agg = defaultdict(lambda: [0, 0, 0.0, 0.0])          # (model, task) -> runs, passes, tokens, cached
+    agg = defaultdict(lambda: [0, 0, 0.0, 0.0, 0.0])     # (model, task) -> runs, passes, tokens, cached, pipeline
     for r in rows:
         a = agg[(r["model"], r["task"])]
         full, cached = episode_tokens(r)
@@ -260,6 +314,8 @@ def bootstrap_orchestrator(rows, small, large):
         a[1] += r["passed"]
         a[2] += full
         a[3] += cached
+        a[4] += full + router_tokens(r)
+    has_pipeline = any("router_spans" in r for r in rows)
     tasks = sorted({r["task"] for r in rows})
     rng = random.Random(SEED)
     res = defaultdict(list)
@@ -267,13 +323,15 @@ def bootstrap_orchestrator(rows, small, large):
         sample = [rng.choice(tasks) for _ in tasks]
         tot = {}
         for m in (small, large):
-            tot[m] = [sum(agg[(m, t)][j] for t in sample) for j in range(4)]
+            tot[m] = [sum(agg[(m, t)][j] for t in sample) for j in range(5)]
             res[f"success_rate:{m}"].append(tot[m][1] / tot[m][0])
-        (n1, s1, t1, c1), (n2, s2, t2, c2) = tot[small], tot[large]
+        (n1, s1, t1, c1, p1), (n2, s2, t2, c2, p2) = tot[small], tot[large]
         res["success_rate_difference"].append(s2 / n2 - s1 / n1)
         if s1 and s2:                                     # break-even is undefined with 0 successes
             res["break_even_price_ratio"].append((t1 / s1) / (t2 / s2))
             res["break_even_price_ratio_cached"].append((c1 / s1) / (c2 / s2))
+            if has_pipeline:
+                res["break_even_price_ratio_pipeline"].append((p1 / s1) / (p2 / s2))
     out = {k: ci(v) for k, v in res.items()}
     out["resamples"] = BOOTSTRAP
     out["resamples_with_defined_break_even"] = len(res["break_even_price_ratio"])
@@ -317,12 +375,20 @@ def weight_sensitivity(rows, small, large, weights=(1, 2, 4, 8)):
     return out
 
 
-def regrade_md(changes):
-    lines = ["# Re-grading the saved traces", "",
-             "The graders in [`tasks.py`](../tasks.py) were revised on 2026-09-25, after the run, to fix "
-             "errors found in both directions (see its docstring). `analyze.py` grades every saved "
-             "conversation again with the current graders; this file lists every conversation whose "
-             "grade changed. Nothing was re-run: the traces are the ones recorded on 2026-09-20.", "",
+RUN1_REGRADE_INTRO = (
+    "The graders in [`tasks.py`](../tasks.py) were revised on 2026-09-25, after the run, to fix "
+    "errors found in both directions (see its docstring). `analyze.py` grades every saved "
+    "conversation again with the current graders; this file lists every conversation whose "
+    "grade changed. Nothing was re-run: the traces are the ones recorded on 2026-09-20.")
+FROZEN_REGRADE_INTRO = (
+    "Run 2 was graded by graders frozen before it started ([`tasks.py`](../tasks.py) and "
+    "[`router.py`](../router.py), sha256 pinned in `tests/test_graders_frozen.py`). `analyze.py` "
+    "grades every saved conversation again with the current graders; this file lists every "
+    "conversation whose grade changed, so it stays empty unless the graders change after the run.")
+
+
+def regrade_md(changes, intro=RUN1_REGRADE_INTRO):
+    lines = ["# Re-grading the saved traces", "", intro, "",
              f"{len(changes)} grades changed: "
              f"{sum(c['was'] and not c['now'] for c in changes)} pass → fail, "
              f"{sum(c['now'] and not c['was'] for c in changes)} fail → pass.", "",
@@ -339,6 +405,53 @@ def regrade_md(changes):
               "A hand-labelled pass over all 240 conversations, with grader agreement, is listed under "
               "Next in the experiment README."]
     return "\n".join(lines) + "\n"
+
+
+def run2_sections(summary, models):
+    """Extra tables for traces that carry Ollama timings and a router in the pipeline."""
+    orch, rout, md = summary["orchestrator"], summary["router"], []
+    cols = [m for m in models if "ollama_timing" in orch.get(m, {})]
+    if cols:
+        t = {m: orch[m]["ollama_timing"] for m in cols}
+        md.append("Orchestrator time per call, from Ollama's own durations:\n\n" + table([
+            ("Model time (prompt eval + eval)", [f"{t[m]['model_s_per_call']:.2f} s" for m in cols]),
+            ("Request overhead (latency minus model time), mean / p50",
+             [f"{t[m]['overhead_s_per_call']:.3f} / {t[m]['overhead_s_p50']:.3f} s" for m in cols]),
+            ("Decode speed (output tokens / eval time)",
+             [f"{t[m]['decode_tokens_per_s']:.0f} tokens/s" for m in cols]),
+            ("Prefill speed (input tokens / prompt eval time)",
+             [f"{t[m]['prefill_tokens_per_s']:,.0f} tokens/s" for m in cols]),
+        ], cols))
+    cols = [m for m in models if "pipeline" in orch.get(m, {})]
+    if cols:
+        p = {m: orch[m]["pipeline"] for m in cols}
+        md.append("Pipeline (router at temperature 0 in front of the orchestrator, same model at both nodes):\n\n"
+                  + table([
+                      ("Router calls per conversation", [f"{p[m]['router_calls_per_episode']:.2f}" for m in cols]),
+                      ("Router tokens per conversation",
+                       [f"{p[m]['router_blended_tokens_per_episode']:,.0f}" for m in cols]),
+                      ("Router share of pipeline tokens", [f"{p[m]['router_share_of_tokens']:.1%}" for m in cols]),
+                      ("Router latency per call", [f"{p[m]['router_latency_per_call_s']:.2f} s" for m in cols]),
+                      ("**Pipeline tokens per successful task**",
+                       [f"**{p[m]['blended_tokens_per_success']:,.0f}**" for m in cols]),
+                      ("**Pipeline time per successful task**",
+                       [f"**{p[m]['time_per_success_s']:.1f} s**" for m in cols]),
+                  ], cols))
+    cols = [m for m in models if "ollama_timing" in rout.get(m, {})]
+    if cols:
+        t = {m: rout[m]["ollama_timing"] for m in cols}
+        md.append("Standalone router time per call, from Ollama's own durations:\n\n" + table([
+            ("Model time", [f"{t[m]['model_s_per_call']:.3f} s" for m in cols]),
+            ("Request overhead, mean / p50",
+             [f"{t[m]['overhead_s_per_call']:.3f} / {t[m]['overhead_s_p50']:.3f} s" for m in cols]),
+        ], cols))
+    for c in summary["comparisons"]:
+        if "break_even_price_ratio_pipeline" in c:
+            cis = summary.get("ci95_orchestrator", {}).get("break_even_price_ratio_pipeline")
+            md.append(f"- **pipeline** (router + orchestrator): the small model must be at least "
+                      f"**{c['break_even_price_ratio_pipeline']:.2f}x** cheaper per token to cost the same "
+                      f"per success" + (f" (95% CI {span(cis, '{:.2f}')}x)" if cis else "") + ".")
+    return md
 
 
 def table(rows, cols):
@@ -373,7 +486,8 @@ def main():
         json.dump(summary, f, indent=1)
     if orch_rows:
         with open(os.path.join(RESULTS, "regrade.md"), "w", encoding="utf-8") as f:
-            f.write(regrade_md(changes))
+            frozen = orch_rows[0].get("run", 1) >= 2
+            f.write(regrade_md(changes, FROZEN_REGRADE_INTRO if frozen else RUN1_REGRADE_INTRO))
 
     md = []
     if orch:
@@ -453,6 +567,7 @@ def main():
         rg = summary["regraded"]
         md.append(f"- **Re-graded** with the current graders: {rg['changed']} grades changed "
                   f"({rg['pass_to_fail']} pass -> fail, {rg['fail_to_pass']} fail -> pass); see `regrade.md`.")
+    md += run2_sections(summary, models)
     text = "\n".join(md)
     with open(os.path.join(RESULTS, "summary.md"), "w", encoding="utf-8") as f:
         f.write(text + "\n")

@@ -85,5 +85,6 @@ def parse(text):
 def run_router(model, message, seed, temperature=0.7):
     msgs = [{"role": "system", "content": PROMPT}, {"role": "user", "content": message}]
     msg, span = chat(model, msgs, None, temperature, seed, num_predict=24)
+    span["temperature"] = temperature
     span.update(node="router", predicted=parse(msg.get("content")), raw=(msg.get("content") or "")[:80])
     return span

@@ -49,10 +49,22 @@ opposite answers.
 uv sync                                                  # Python 3.11+; reportlab and pytest, pinned in uv.lock
 uv run python cheaper-per-token/cost_model.py            # the arithmetic, standard library only
 uv run python cheaper-per-token/experiment/analyze.py    # recompute results, CIs and re-grades from the saved traces
+EVAL_RESULTS=cheaper-per-token/experiment/results-run2 uv run python cheaper-per-token/experiment/analyze.py   # the same for run 2
 uv run python cheaper-per-token/figures.py               # redraw the figures
 uv run pytest                                            # graders, worked example, and results == fresh recompute
 uv run python build_pdfs.py                              # rebuild both PDFs from the markdown
 ```
+
+**Run 2** (2026-09-26, [`results-run2/`](cheaper-per-token/experiment/results-run2/summary.md)).
+A second run with every tool parameter documented, the router at temperature 0 wired in front of
+the agent, Ollama's own timings in every span, and graders frozen before the run; same two
+models, 24 tasks and 5 seeds. The 3B's success rate rose from 20% to **40.8%** (95% CI 27–55%)
+against **68.3%** (52–83%) for the 7B, and the orchestrator break-even fell from 4.10× to
+**1.47×** (95% CI 1.01–2.16×). It still exceeds the router's **1.09×** (1.02–1.21×), and the whole
+pipeline, router included, breaks even at 1.47× (1.02–2.16×). Better tool docs shrank the
+small model's penalty; the ordering of the two nodes held. The ~2 s per-call overhead of run 1
+measured 0.03 s with `127.0.0.1`. Run 1's numbers above and in the article are unchanged;
+[details and limitations](cheaper-per-token/experiment/README.md#run-2-2026-09-26).
 
 Re-running the experiment itself needs [Ollama](https://ollama.com) and two free local models; the
 [experiment README](cheaper-per-token/experiment/README.md) has the commands, the exact setup of the

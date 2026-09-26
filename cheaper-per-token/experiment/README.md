@@ -15,7 +15,8 @@ Everything runs locally through [Ollama](https://ollama.com). No API keys, no co
 | [`router.py`](router.py) | A separate leaf-node task: a single-call intent router with its own 48 labelled messages across 6 intents. The agent does not call it; it is a second measurement on the same two models, in the same domain |
 | [`harness.py`](harness.py) | Runs every model on every case k times. Resumable |
 | [`analyze.py`](analyze.py) | Turns traces into metrics: pass^k, tokens and time per successful task, trajectory metrics, the break-even price ratio, bootstrap confidence intervals, a caching re-pricing and a latency fit. Re-grades the saved traces with the current graders |
-| [`results/`](results/) | Raw traces (`*.jsonl`, one line per conversation or call), the computed [`summary.md`](results/summary.md) / `summary.json`, and [`regrade.md`](results/regrade.md), every grade the current graders changed |
+| [`results-run2/`](results-run2/) | Run 2 (2026-09-26): its traces and computed results, see [Run 2](#run-2-2026-09-26) |
+| [`results/`](results/) | Run 1: raw traces (`*.jsonl`, one line per conversation or call), the computed [`summary.md`](results/summary.md) / `summary.json`, and [`regrade.md`](results/regrade.md), every grade the current graders changed |
 
 ## Recompute the results
 
@@ -35,9 +36,10 @@ uv run pytest                                            # graders, and a check 
 ```bash
 ollama pull qwen2.5-coder:3b
 ollama pull qwen2.5-coder:7b
-python harness.py --node router --k 3
-python harness.py --node orchestrator --k 5
+python harness.py --run 1 --node router --k 3          # run 1's configuration, into results/
+python harness.py --run 1 --node orchestrator --k 5
 python analyze.py
+# run 2: see "Run 2" below
 ```
 
 To try other models, pass `--models`, for example `--models llama3.2:3b qwen2.5:7b`.
@@ -125,10 +127,88 @@ still twice the router's upper bound (1.24×).
 - The graders were revised after seeing the traces. Every changed grade is published, but the grader has not been checked against human labels.
 - The router ran at temperature 0.7, like the agent, and its sample is 48 distinct messages, repeated 3 times.
 
+## Run 2 (2026-09-26)
+
+A second run with the setup changes listed under Next in run 1. Run 1's traces, results and
+write-ups above are unchanged; run 2 lives in [`results-run2/`](results-run2/)
+([`summary.md`](results-run2/summary.md), `summary.json`, [`regrade.md`](results-run2/regrade.md)).
+
+**What changed from run 1** (Next items 1, 3, 4 and 5):
+
+| | Run 1 | Run 2 |
+|---|---|---|
+| Tool parameter docs | 1 of 13 described | all 13 described, each with an example value (`shop.TOOLS_DOCUMENTED`); the examples (customer `C09`, order `1234`, sku `P999`) are not in the store, so they show the format without hinting at an answer |
+| Router | standalone, temperature 0.7 | temperature 0, standalone (48 × 3) **and** in front of the agent: each customer message is classified first, and the label goes to the orchestrator as a system note; both nodes' spans are in the same trace |
+| Ollama endpoint | `http://localhost:11434` | `http://127.0.0.1:11434` |
+| Per-span timings | wall clock only | plus Ollama's `prompt_eval_duration`, `eval_duration`, `load_duration`, `total_duration` |
+| `num_predict` (orchestrator) | 512 | 1024 |
+| Provenance in every trace | none | Ollama version (0.34.2), full model digest, quantisation, GPU (RTX 3070, 8 GB, driver 610.88) |
+| Graders | revised after the run | frozen before it: `tests/test_graders_frozen.py` pins `tasks.py` and `router.py` by hash, committed (`ab40705`) before the first run-2 trace; 0 grades changed on re-grading |
+
+Unchanged: the same two models with the same digests (`f72c60cabf62…`, `dae161e27b0e…`), the
+same 24 tasks, 5 seeds, the same seeds per call, temperature 0.7 at the orchestrator, the same
+graders and the same analysis. Not done from run 1's Next: item 2 (a current model pair with
+native tool calling) needs models that are not installed locally, and this run downloads
+nothing; item 6 (hand-labelling all conversations) needs a human labeller.
+
+Commands (from this folder):
+
+```bash
+python harness.py --run 2 --node router --k 3
+python harness.py --run 2 --node orchestrator --k 5
+EVAL_RESULTS=results-run2 python analyze.py
+```
+
+**Results**, with 95% intervals computed exactly as in run 1 (percentile bootstrap, 10,000
+resamples, over tasks for the orchestrator and messages for the router, paired across models):
+
+| | Run 1 | Run 2 | Run 2, 95% CI |
+|---|---:|---:|---:|
+| 3B success rate | 20% (24/120) | **40.8%** (49/120) | 27–55% |
+| 7B success rate | 62.5% (75/120) | **68.3%** (82/120) | 52–83% |
+| Gap, 7B minus 3B | +42.5 points | +27.5 points | +13 to +42 points |
+| pass^5, 3B / 7B | 4% / 50% | 12% / 54% | |
+| Tool errors per conversation, 3B | 3.14 | 1.43 | |
+| 3B calls rejected for copying the schema into the argument | 117 | 0 | |
+| Tokens per successful task, 3B / 7B | 30,274 / 7,382 | 13,185 / 9,000 | |
+| **Break-even price ratio, orchestrator** | 4.10× | **1.47×** | 1.01–2.16× |
+| Break-even, re-sent prefix at 10% | 4.24× | 1.74× | 1.26–2.51× |
+| **Break-even, whole pipeline (router + orchestrator)** | – | **1.47×** | 1.02–2.16× |
+| Router accuracy at T=0, 3B / 7B (standalone) | 87% / 98% at T=0.7 | 90% / 98% | 81–98% / 94–100% |
+| Break-even price ratio, router | 1.13× | 1.09× | 1.02–1.21× |
+| Request overhead per call (latency minus Ollama's model time) | ~2 s (regression intercept) | 0.03 s (measured) | |
+
+What run 2 shows:
+
+- **The small model's gap narrowed a lot, and the ordering held.** The 3B doubled its success
+  rate, and break-even at the orchestrator fell from 4.10× to 1.47×. The interval still excludes
+  1 (barely: 1.01), and the orchestrator is still further from parity than the router (1.09×).
+  The 7B's tokens per success rose (7,382 → 9,000), mostly because the documented tool schema
+  makes every prompt longer (first call 764 → 1,077 input tokens).
+- **Several things changed at once**, so run 2 does not say how much each contributed. The
+  parameter docs are the most likely driver for the 3B (its schema-copying errors went from 117
+  to 0), but the router's label in the context changed too. `num_predict` did not matter here:
+  no call in run 2 came near 512 output tokens (longest 224).
+- **The router costs little inside the pipeline**: 1.3 router calls per conversation, about 3%
+  of the pipeline's tokens, and the pipeline break-even equals the orchestrator's (1.47×).
+- **The ~2 s per-request overhead was the harness.** With `127.0.0.1` and Ollama's own timings,
+  latency minus model time is 0.03 s per call, and per-call latency is 0.40 s (3B) and 0.44 s
+  (7B). The 3B decodes at 138 tokens/s against 77 for the 7B. Run 1's per-call latency parity
+  was therefore an artifact, as its write-up suspected; since run 2 also changed other things,
+  the endpoint is the likely cause but not isolated by a controlled test. Prefill speeds (about
+  26,000–38,000 tokens/s) are high because Ollama reuses the cached prefix of the conversation.
+- **Graders frozen, 0 re-grades.** Every run-2 grade was produced by graders committed before
+  the run.
+
+Limitations of run 2: the same two models from one family and one small domain; several
+setup changes in one run; the router label as a system note is one wiring choice; the graders
+are still not checked against human labels. Next: separate the effects (docs without the router
+note, and the reverse), add a current model pair with native tool calling, hand-label the
+conversations.
+
 ## Next
 
-The next run changes the setup, so its numbers will be reported as a new run rather than edits to
-these:
+Run 1's list. Items 1, 3, 4 and 5 were done in [Run 2](#run-2-2026-09-26); items 2 and 6 remain.
 
 1. Describe all 13 tool parameters, with an example value each (for instance, that `customer_id` looks like `C01`).
 2. Add a current model pair with native tool calling, and send text-mode tool results back as a user message.

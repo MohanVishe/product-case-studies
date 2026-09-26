@@ -10,14 +10,14 @@ import pytest
 import analyze
 from cost_model import Config, break_even_price_ratio
 
-RESULTS = Path(__file__).resolve().parents[1] / "cheaper-per-token" / "experiment" / "results"
+EXPERIMENT = Path(__file__).resolve().parents[1] / "cheaper-per-token" / "experiment"
+RESULTS = EXPERIMENT / "results"
+RUN2 = EXPERIMENT / "results-run2"
 
 
-@pytest.fixture(scope="module")
-def recomputed(tmp_path_factory):
-    out = tmp_path_factory.mktemp("results")
+def recompute(src, out):
     for name in ("orchestrator.jsonl", "router.jsonl"):
-        shutil.copy(RESULTS / name, out / name)
+        shutil.copy(src / name, out / name)
     old = analyze.RESULTS
     analyze.RESULTS = str(out)
     try:
@@ -25,6 +25,16 @@ def recomputed(tmp_path_factory):
     finally:
         analyze.RESULTS = old
     return out
+
+
+@pytest.fixture(scope="module")
+def recomputed(tmp_path_factory):
+    return recompute(RESULTS, tmp_path_factory.mktemp("results"))
+
+
+@pytest.fixture(scope="module")
+def recomputed_run2(tmp_path_factory):
+    return recompute(RUN2, tmp_path_factory.mktemp("results-run2"))
 
 
 def same(a, b):
@@ -82,3 +92,35 @@ def test_every_figure_builds():
 
     for name in list(figures.CONCEPT) + list(figures.EXPERIMENT):
         assert "<svg" in figures.to_svg(figures.build(name))
+
+
+def test_run2_summary_json_matches_a_fresh_recompute(recomputed_run2):
+    fresh = json.loads((recomputed_run2 / "summary.json").read_text(encoding="utf-8"))
+    committed = json.loads((RUN2 / "summary.json").read_text(encoding="utf-8"))
+    assert same(fresh, committed), "results-run2/summary.json is stale"
+
+
+@pytest.mark.parametrize("name", ["summary.md", "regrade.md"])
+def test_run2_results_match_a_fresh_recompute(recomputed_run2, name):
+    fresh = (recomputed_run2 / name).read_text(encoding="utf-8")
+    committed = (RUN2 / name).read_text(encoding="utf-8").replace("\r\n", "\n")
+    assert fresh == committed, f"results-run2/{name} is stale"
+
+
+def test_run2_headline_numbers(recomputed_run2):
+    """The Run 2 numbers the READMEs quote."""
+    s = json.loads((recomputed_run2 / "summary.json").read_text(encoding="utf-8"))
+    small, large = s["orchestrator"]["qwen2.5-coder:3b"], s["orchestrator"]["qwen2.5-coder:7b"]
+    assert (small["successes"], small["episodes"]) == (49, 120)
+    assert (large["successes"], large["episodes"]) == (82, 120)
+    assert (small["tasks_passing_every_run"], large["tasks_passing_every_run"]) == (3, 13)
+    orch, rout = s["comparisons"]
+    assert round(orch["break_even_price_ratio"], 2) == 1.47
+    assert round(orch["break_even_price_ratio_cached"], 2) == 1.74
+    assert round(orch["break_even_price_ratio_pipeline"], 2) == 1.47
+    assert round(rout["break_even_price_ratio"], 2) == 1.09
+    assert [round(x, 2) for x in s["ci95_orchestrator"]["break_even_price_ratio"]] == [1.01, 2.16]
+    assert [round(x, 2) for x in s["ci95_router"]["break_even_price_ratio"]] == [1.02, 1.21]
+    assert s["regraded"]["changed"] == 0                      # graders frozen before the run
+    assert s["router"]["qwen2.5-coder:3b"]["temperature"] == 0.0
+    assert small["ollama_timing"]["overhead_s_per_call"] < 0.1   # the ~2 s run-1 overhead is gone

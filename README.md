@@ -63,8 +63,8 @@ against **68.3%** (52–83%) for the 7B, and the orchestrator break-even fell fr
 **1.47×** (95% CI 1.01–2.16×). It still exceeds the router's **1.09×** (1.02–1.21×), and the whole
 pipeline, router included, breaks even at 1.47× (1.02–2.16×). Better tool docs shrank the
 small model's penalty; the ordering of the two nodes held. The ~2 s per-call overhead of run 1
-measured 0.03 s with `127.0.0.1`. Run 1's numbers above and in the article are unchanged;
-[details and limitations](cheaper-per-token/experiment/README.md#run-2-2026-09-26).
+measured 0.03 s with `127.0.0.1`. Run 1's numbers above are unchanged, and the article covers both
+runs; [details and limitations](cheaper-per-token/experiment/README.md#run-2-2026-09-26).
 
 Re-running the experiment itself needs [Ollama](https://ollama.com) and two free local models; the
 [experiment README](cheaper-per-token/experiment/README.md) has the commands, the exact setup of the
